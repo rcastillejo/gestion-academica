@@ -1,23 +1,43 @@
 package com.sacooliveros.intranet.bean;
 
+import com.google.gson.annotations.SerializedName;
+
 public class AlumnoBean {
+
+    @SerializedName("@id")
     private String id;
+    @SerializedName("@nombres")
     private String nombres;
+    @SerializedName("@apellidos")
     private String apellidos;
+    @SerializedName("@telefono")
     private String telefono;
-    private String correo;   
-    
+    @SerializedName("@correo")
+    private String correo;
+
+    @SerializedName("@local")
     private String local;
+    @SerializedName("@tipoCentro")
     private String tipoCentro;
+    @SerializedName("@centro")
     private String centro;
+    @SerializedName("@tipoGrado")
     private String tipoGrado;
+    @SerializedName("@grado")
     private String grado;
-    
+    @SerializedName("@turno")
     private String turno;
+    @SerializedName("@seccion")
+    private String seccion;
+    @SerializedName("@aula")
+    private String aula;
+    @SerializedName("@nivel")
+    private String nivel;
     
-    
-    
+
+    @SerializedName("@mensajeError")
     private String mensajeError;
+
 
     public String getId() {
         return id;
@@ -107,6 +127,30 @@ public class AlumnoBean {
         this.turno = turno;
     }
 
+    public String getSeccion() {
+        return seccion;
+    }
+
+    public void setSeccion(String seccion) {
+        this.seccion = seccion;
+    }
+
+    public String getAula() {
+        return aula;
+    }
+
+    public void setAula(String aula) {
+        this.aula = aula;
+    }
+
+    public String getNivel() {
+        return nivel;
+    }
+
+    public void setNivel(String nivel) {
+        this.nivel = nivel;
+    }
+
     public String getMensajeError() {
         return mensajeError;
     }
@@ -117,9 +161,7 @@ public class AlumnoBean {
 
     @Override
     public String toString() {
-        return "AlumnoBean{" + "id=" + id + ", nombres=" + nombres + ", apellidos=" + apellidos + ", telefono=" + telefono + ", correo=" + correo + ", local=" + local + ", tipoCentro=" + tipoCentro + ", centro=" + centro + ", tipoGrado=" + tipoGrado + ", grado=" + grado + ", turno=" + turno + ", mensajeError=" + mensajeError + '}';
+        return "AlumnoBean{" + "id=" + id + ", nombres=" + nombres + ", apellidos=" + apellidos + ", telefono=" + telefono + ", correo=" + correo + ", local=" + local + ", tipoCentro=" + tipoCentro + ", centro=" + centro + ", tipoGrado=" + tipoGrado + ", grado=" + grado + ", turno=" + turno + ", seccion=" + seccion + ", aula=" + aula + ", nivel=" + nivel + ", mensajeError=" + mensajeError + '}';
     }
 
-
-    
 }

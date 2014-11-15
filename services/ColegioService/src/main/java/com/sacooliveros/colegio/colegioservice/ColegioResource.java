@@ -7,19 +7,19 @@ package com.sacooliveros.colegio.colegioservice;
 import com.google.gson.Gson;
 import com.sacooliveros.colegio.model.AlumnoBean;
 import com.sacooliveros.colegio.model.AsistenciaBean;
-import java.util.ArrayList;
-import java.util.List;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.UriInfo;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.PUT;
-import javax.ws.rs.Path;
-import javax.ws.rs.GET;
-import javax.ws.rs.Produces;
 import com.sacooliveros.colegio.model.DetalleAsistenciaBean;
 import com.sacooliveros.colegio.model.NotaBean;
 import com.sacooliveros.colegio.model.SimulacroBean;
+import java.util.ArrayList;
+import java.util.List;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
+import javax.ws.rs.PUT;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.UriInfo;
 
 /**
  * REST Web Service
@@ -38,27 +38,11 @@ public class ColegioResource {
     public ColegioResource() {
     }
 
-    /**
-     * Retrieves representation of an instance of com.sacooliveros.colegio.colegioservice.ColegioResource
-     * @return an instance of java.lang.String
-     */
-    @GET
-    @Produces("application/json")
-    public String getJson() {
-        //TODO return proper representation object
-        throw new UnsupportedOperationException();
-    }
-    
-    /**
-     * PUT method for updating or creating an instance of ColegioResource
-     * @param content representation for the resource
-     */
-    @PUT
-    @Consumes("application/json")
-    public void putJson(String content) {
-    }
 
-     /**
+    /**
+     * Funcionalidads del Catalogo
+     */
+    /**
      * Consultar Datos
      *
      * @param id
@@ -67,19 +51,22 @@ public class ColegioResource {
     @GET
     @Path("/alumno/{id}")
     @Produces("application/json")
-    public String ConsultarDatos(@PathParam("id") String id) {
+    public String getAlumno(@PathParam("id") String id) {
+        System.out.println("Obteniendo alumno por " + id + " ...");
         Gson gson = new Gson();
         AlumnoBean alumno = new AlumnoBean();
-        alumno.setId("123");
+        alumno.setId(id);
         alumno.setNombres("Luis Ricardo");
         alumno.setApellidos("Castillejo Luna");
         alumno.setTelefono("12345678");
         alumno.setCorreo("rcastillejo@gmail.com");
-
+        alumno.setAula("305");
+        alumno.setNivel("01");
+        System.out.println("Alumno obtenido " + alumno);
         return gson.toJson(alumno);
     }
-    
-     /**
+
+    /**
      * Actualizar Datos
      *
      * @param content
@@ -87,7 +74,7 @@ public class ColegioResource {
     @PUT
     @Path("/alumno")
     @Consumes("application/json")
-    public void ActualizarDatos(String content) {
+    public void putAlumno(String content) {
         Gson gson = new Gson();
         AlumnoBean alumno = gson.fromJson(content, AlumnoBean.class);
         System.out.println("alumno:\n" + alumno);
@@ -102,7 +89,7 @@ public class ColegioResource {
     @GET
     @Path("/notas/{alumnoId}")
     @Produces("application/json")
-    public String ConsultarNotas(@PathParam("alumnoId") String alumnoId) {
+    public String getNotas(@PathParam("alumnoId") String alumnoId) {
         Gson gson = new Gson();
 
         List<NotaBean> notas = new ArrayList<NotaBean>();
@@ -127,10 +114,9 @@ public class ColegioResource {
     @GET
     @Path("/simulacro/{alumnoId}")
     @Produces("application/json")
-    public String ConsultarResultadoSimulacro(@PathParam("alumnoId") String alumnoId) {
+    public String getSimulacro(@PathParam("alumnoId") String alumnoId) {
 
         //Invocar al servicio ColegioService
-
         Gson gson = new Gson();
         SimulacroBean simulacro = new SimulacroBean();
         simulacro.setAlumnoId(alumnoId);
@@ -150,7 +136,7 @@ public class ColegioResource {
     @GET
     @Path("/asistencia/{alumnoId}")
     @Produces("application/json")
-    public String ConsultarAsistencia(@PathParam("alumnoId") String alumnoId) {
+    public String getAsistencia(@PathParam("alumnoId") String alumnoId) {
 
         Gson gson = new Gson();
 
@@ -173,7 +159,7 @@ public class ColegioResource {
         asistencia.setTotalNom(0);
         asistencia.setTotalTar(0);
         asistencia.setDetalleAsistencia(dias);
-        
+
         return gson.toJson(asistencia);
     }
 }
