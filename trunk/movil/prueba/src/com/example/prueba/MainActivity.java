@@ -1,17 +1,29 @@
 package com.example.prueba;
 
-import android.support.v7.app.ActionBarActivity;
+
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 
 
-public class MainActivity extends ActionBarActivity {
-
+public class MainActivity extends Activity  implements OnClickListener{
+	private Button btnConsultar, btnOtros;
+	
+	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        
+        obtenerElementos();
+        
+        asignarEventos();                
     }
 
 
@@ -33,4 +45,28 @@ public class MainActivity extends ActionBarActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+
+    private void obtenerElementos(){
+        
+        btnConsultar = (Button) findViewById(R.id.main_boton1);
+        btnOtros = (Button) findViewById(R.id.main_boton2);    	
+    }
+
+    private void asignarEventos(){
+    	btnConsultar.setOnClickListener(this);
+    	btnOtros.setOnClickListener(this);
+    }
+    
+	@Override
+	public void onClick(View v) {
+		Intent i;
+		if(v.equals(btnConsultar)){
+    		i = new Intent(this, Pantalla1.class);    		
+    		startActivity(i);
+		}else if (v.equals(btnOtros)){
+			i = new Intent(this, Pantalla2.class);			
+			startActivity(i);
+		}
+	}
 }

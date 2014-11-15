@@ -1,59 +1,245 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout  xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-
+<!-- Nombre Apellidos -->
     <TextView
         android:id="@+id/pantalla1_etiqueta1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/pantalla1_etiqueta1"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:text="@string/pantalla1_lblNombresApellidos"
+        android:textAppearance="?android:attr/textAppearanceSmall" 
+     	
+     	android:layout_alignParentTop="true"/>
 
-    <EditText
-        android:id="@+id/pantalla1_textbox1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10" 
-        android:inputType="textPersonName">
-    </EditText>
-    
     <TextView
-        android:id="@+id/pantalla1_etiqueta2"
+        android:id="@+id/pantalla1_dato1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/pantalla1_etiqueta2"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
-    <EditText
-        android:id="@+id/pantalla1_textbox2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10" 
-        android:inputType="textPersonName">
-    </EditText>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="horizontal" >
-
-	    <Button
-	        android:id="@+id/pantalla1_boton1"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:text="@string/pantalla1_boton1">
-	    </Button>    
-	    
-	    <Button
-	        android:id="@+id/pantalla1_boton2"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:text="@string/pantalla1_boton2">
-	    </Button>        
+        android:text="@string/string_empty"
+        android:textAppearance="?android:attr/textAppearanceSmall" 
         
-    </LinearLayout>
+        android:layout_below="@+id/pantalla1_etiqueta1"/>
     
-</LinearLayout>
+<!-- Tipo Centro / Centro -->
+    
+    
+
+    <TextView
+        android:id="@+id/pantalla1_dato3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/pantalla1_etiqueta3"
+        android:text="@string/string_empty"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <TextView
+        android:id="@+id/pantalla1_etiqueta3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        
+        android:layout_below="@+id/pantalla1_dato1"
+        android:text="@string/pantalla1_lblTipoCentro"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <TextView
+        android:id="@+id/pantalla1_dato4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/pantalla1_etiqueta4"
+        android:layout_below="@+id/pantalla1_etiqueta3"
+        android:text="@string/string_empty"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <TextView
+        android:id="@+id/pantalla1_etiqueta4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/pantalla1_dato4"
+        android:layout_marginLeft="50dp"
+        android:layout_toRightOf="@+id/pantalla1_etiqueta3"
+        android:text="@string/pantalla1_lblCentro"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+    
+    <!-- Local / Aula-->
+    
+    <TextView
+        android:id="@+id/pantalla1_etiqueta5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/pantalla1_lblLocal"
+        android:textAppearance="?android:attr/textAppearanceSmall" 
+        
+        android:layout_below="@+id/pantalla1_dato3"/>
+
+    <TextView
+        android:id="@+id/pantalla1_dato5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/pantalla1_etiqueta5"
+        android:text="@string/string_empty"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+    
+    
+    
+    <TextView
+        android:id="@+id/pantalla1_dato6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/pantalla1_etiqueta6"
+        android:layout_below="@+id/pantalla1_etiqueta5"
+        android:text="@string/string_empty"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <TextView
+        android:id="@+id/pantalla1_etiqueta6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/pantalla1_dato6"
+        android:layout_marginLeft="50dp"
+        android:layout_toRightOf="@+id/pantalla1_etiqueta5"
+        android:text="@string/pantalla1_lblAula"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+    
+    
+    <!-- Tipo Grado / Grado-->
+    
+    <TextView
+        android:id="@+id/pantalla1_etiqueta7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/pantalla1_lblTipoGrado"
+        android:textAppearance="?android:attr/textAppearanceSmall" 
+        
+        android:layout_below="@+id/pantalla1_dato5"/> 
+
+    <TextView
+        android:id="@+id/pantalla1_dato7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/pantalla1_etiqueta7"
+        android:text="@string/string_empty"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+    
+    
+    
+    <TextView
+        android:id="@+id/pantalla1_dato8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/pantalla1_etiqueta8"
+        android:layout_below="@+id/pantalla1_etiqueta7"
+        android:text="@string/string_empty"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <TextView
+        android:id="@+id/pantalla1_etiqueta8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/pantalla1_dato8"
+        android:layout_marginLeft="50dp"
+        android:layout_toRightOf="@+id/pantalla1_etiqueta7"
+        android:text="@string/pantalla1_lblGrado"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+    
+    
+    <!-- Seccion / Nivel-->
+    
+    <TextView
+        android:id="@+id/pantalla1_etiqueta9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/pantalla1_lblSeccion"
+        android:textAppearance="?android:attr/textAppearanceSmall" 
+        
+        android:layout_below="@+id/pantalla1_dato7"/> 
+
+    <TextView
+        android:id="@+id/pantalla1_dato9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/pantalla1_etiqueta9"
+        android:text="@string/string_empty"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+    
+    
+    
+    <TextView
+        android:id="@+id/pantalla1_dato10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/pantalla1_etiqueta10"
+        android:layout_below="@+id/pantalla1_etiqueta9"
+        android:text="@string/string_empty"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <TextView
+        android:id="@+id/pantalla1_etiqueta10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/pantalla1_dato10"
+        android:layout_marginLeft="50dp"
+        android:layout_toRightOf="@+id/pantalla1_etiqueta9"
+        android:text="@string/pantalla1_lblNivel"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+    
+     
+    
+    
+    <!-- Correo -->
+    
+    <TextView
+        android:id="@+id/pantalla1_etiqueta11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/pantalla1_lblCorreo"
+        android:textAppearance="?android:attr/textAppearanceSmall" 
+        
+        android:layout_below="@+id/pantalla1_dato9"/> 
+        
+    <TextView
+        android:id="@+id/pantalla1_dato11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/pantalla1_etiqueta11"
+        android:text="@string/string_empty"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+    
+    
+    
+    <!-- Turno -->
+    
+    <TextView
+        android:id="@+id/pantalla1_etiqueta12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/pantalla1_lblTurno"
+        android:textAppearance="?android:attr/textAppearanceSmall" 
+        
+        android:layout_below="@+id/pantalla1_dato11"/> 
+        
+    <TextView
+        android:id="@+id/pantalla1_dato12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/pantalla1_etiqueta12"
+        android:text="@string/string_empty"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+    
+    <Button
+        android:id="@+id/pantalla1_boton1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/pantalla1_dato12"
+        android:layout_marginTop="16dp"
+        android:text="@string/pantalla1_boton1" />
+
+</RelativeLayout>

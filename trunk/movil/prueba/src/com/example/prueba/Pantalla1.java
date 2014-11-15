@@ -1,25 +1,29 @@
 package com.example.prueba;
 
-import com.sacooliveros.intranet.bean.AlumnoBean;
-import com.sacooliveros.intranet.controller.AlumnoController;
-import com.sacooliveros.intranet.util.Loadingable;
-import com.sacooliveros.intranet.util.HyundaiProgressDialog;
-import com.sacooliveros.intranet.util.LoadTaskDialog;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
-//Se debe implementar la interfaz android.view.View.OnClickListener para el evento click
+import com.sacooliveros.intranet.bean.AlumnoBean;
+import com.sacooliveros.intranet.bean.UsuarioBean;
+import com.sacooliveros.intranet.controller.AlumnoController;
+import com.sacooliveros.intranet.util.HyundaiProgressDialog;
+import com.sacooliveros.intranet.util.LoadTaskDialog;
+import com.sacooliveros.intranet.util.Loadingable;
+
 public class Pantalla1 extends MainActivity implements OnClickListener, Loadingable{
+	TextView txtAlumno, txtTipCentro, txtCentro, txtLocal, txtAula;
+	TextView txtTipGrado, txtGrado, txtSeccion, txtNivel, txtCorreo;
+	TextView txtTurno;
+	Button btnRegresar;
 	String mensaje;
-	Button boton1, boton2;
-	EditText txtAlumnoId;
-	EditText caja1, caja2;
+	AlumnoBean bean;
+	UsuarioBean usuario;
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,53 +31,76 @@ public class Pantalla1 extends MainActivity implements OnClickListener, Loadinga
         //Asigna el layout de la pantalla que se va a mostrar.
         //Esto permite obtener todos los recursos de la pantalla referenciada.
         setContentView(R.layout.pantalla1);
-                
+        
         obtenerElementos();
         
-        asignarEventos();                
+        asignarEventos();
+
+        cargarDatos();
     }
-    
+
+	private UsuarioBean getUsuario(){
+		UsuarioBean usuario = new UsuarioBean();
+		usuario.setUsername("1");
+		return usuario;
+	}
+	
+	private void rellenarElementos(){
+		txtAlumno.setText(bean.getNombres() + " " + bean.getApellidos());
+		txtTipCentro.setText(bean.getTipoCentro());
+		txtCentro.setText(bean.getCentro());
+		txtLocal.setText(bean.getLocal());
+		txtAula.setText(bean.getAula());
+		txtTipGrado.setText(bean.getTipoGrado());
+		txtGrado.setText(bean.getGrado());
+		txtSeccion.setText(bean.getSeccion());
+		txtNivel.setText(bean.getNivel());
+		txtCorreo.setText(bean.getCorreo());
+		txtTurno.setText(bean.getTurno());		
+	}
 
     //Obteniendo los recursos de los botones:
     //R, obtengo el identificador del recurso
     //findViewById, obtengo la referencia del objeto
     private void obtenerElementos(){        
-        caja1 = (EditText) findViewById(R.id.pantalla1_textbox1);
-        caja1 = (EditText) findViewById(R.id.pantalla1_textbox2);
-        
-        boton1 = (Button) findViewById(R.id.pantalla1_boton1);
-        boton2 = (Button) findViewById(R.id.pantalla1_boton2);    	
+    	txtAlumno = (TextView) findViewById(R.id.pantalla1_dato1);        
+    	txtTipCentro = (TextView) findViewById(R.id.pantalla1_dato3);
+    	txtCentro = (TextView) findViewById(R.id.pantalla1_dato4);
+    	txtLocal = (TextView) findViewById(R.id.pantalla1_dato5);
+    	txtAula = (TextView) findViewById(R.id.pantalla1_dato6);
+    	txtTipGrado = (TextView) findViewById(R.id.pantalla1_dato7);
+    	txtGrado = (TextView) findViewById(R.id.pantalla1_dato8);
+    	txtSeccion = (TextView) findViewById(R.id.pantalla1_dato9);
+    	txtNivel = (TextView) findViewById(R.id.pantalla1_dato10);
+    	txtCorreo = (TextView) findViewById(R.id.pantalla1_dato11);
+    	txtTurno = (TextView) findViewById(R.id.pantalla1_dato12);
+        btnRegresar = (Button) findViewById(R.id.pantalla1_boton1);
+
     }
     
 
     private void asignarEventos(){
-        boton1.setOnClickListener(this);
-        boton2.setOnClickListener(this);
+    	btnRegresar.setOnClickListener(this);
+        //boton2.setOnClickListener(this);
     }
     
+    
+    private void cargarDatos(){
+		new LoadTaskDialog(Pantalla1.this, null,
+				new HyundaiProgressDialog(Pantalla1.this)).execute();
+    }
     
     public void onClick(View v){
-    	String texto;
     	Intent i;
     	
-    	if(v.equals(boton1)){
-    		
-
-    		new LoadTaskDialog(Pantalla1.this, null,
-    				new HyundaiProgressDialog(Pantalla1.this)).execute();	
-    		
-    		
-    		//Obtener texto
-    		/*texto = caja1.getText().toString();
-    		Toast.makeText(this, texto, Toast.LENGTH_SHORT).show();*/
+    	if(v.equals(btnRegresar)){
+    		i = new Intent(this, MainActivity.class);    		
     	}else{
-    		//Redireccionar a la pantalla2
-    		i = new Intent(this, Pantalla2.class);
-    		startActivity(i);
+    		i = new Intent(this, Pantalla1.class);    		
     	}
+    	startActivity(i);
     }
-
-
+    
 	@Override
 	public void beforeLoadingData() {
 		// TODO Auto-generated method stub
@@ -81,26 +108,24 @@ public class Pantalla1 extends MainActivity implements OnClickListener, Loadinga
 	
 	@Override
 	public void loadingData() {
-		// TODO Auto-generated method stub
+		String alumnoId;
 		mensaje = "";
 		try {
-			mensaje = AlumnoController.getInstance().consultarDatos(caja1.getText().toString());
+			alumnoId = getUsuario().getUsername();
+			bean = AlumnoController.getInstance().consultar(alumnoId);
 		} catch (Exception e) {
-			Toast.makeText(this, "Error en la conexion", Toast.LENGTH_LONG)
-					.show();
+			mensaje = e.getMessage();
 		}
 	}
 
 	@Override
 	public void afterLoadingData() {
-		// TODO Auto-generated method stub
-		if (mensaje.length() == 0){
-			AlumnoBean bean = AlumnoController.getInstance().currUsuario;
-			caja1.setText(bean.getApellidos());
-			caja2.setText(bean.getNombres());
+		if (mensaje == null || mensaje.length() == 0){
+			rellenarElementos();
 		}else{
 			Toast.makeText(this, mensaje, Toast.LENGTH_LONG).show();
 		}
 		
 	}
+	
 }

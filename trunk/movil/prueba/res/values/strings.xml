@@ -1,24 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">prueba</string>
+    <string name="app_name">Intranet Saco Oliveros</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     
-    <string name="pantalla1_etiqueta1">Medium Text</string>
-    <string name="pantalla1_etiqueta2">Medium Text</string>
+    <string name="main_boton1">Consultar Datos</string>    
+    <string name="main_boton2">Otros</string>
     
-    <string name="pantalla1_boton1">Aceptar</string>
-    <string name="pantalla1_boton2">Salir</string>
+    <string name="pantalla2_etiqueta1">Medium Text</string>
+    <string name="pantalla2_etiqueta2">Medium Text</string>
+    
+    <string name="pantalla2_boton1">Aceptar</string>
+    <string name="pantalla2_boton2">Salir</string>
 
-    <string name="pantalla2_boton1">Regresar</string>
     
      
     <string name="string_empty"></string>
-    
-    
-    
-    
+        
     <string name="pantalla1_lblNombresApellidos">Nombres y Apellidos</string>
     <string name="pantalla1_lblLocal">Local</string>
     <string name="pantalla1_lblCentro">Centro</string>
@@ -31,16 +30,7 @@
     <string name="pantalla1_lblGrado">Grado</string>
     <string name="pantalla1_lblTurno">Turno</string>
     
-    <string name="pantalla1_nombres_apellidos">CASTILLEJO LUNA, LUIS RICARDO</string>
-    <string name="pantalla1_local">LINCE</string>
-    <string name="pantalla1_centro">EBR</string>
-    <string name="pantalla1_tipo_grado">REGULAR</string>
-    <string name="pantalla1_seccion">A</string>
-    <string name="pantalla1_correo">rcastillejo@sacooliveros.edu.pe</string>
-    <string name="pantalla1_aula">A-210</string>
-    <string name="pantalla1_tipo_centro">COLEGIO</string>
-    <string name="pantalla1_nivel">SECUNDARIA</string>
-    <string name="pantalla1_grado">1ER GRADO</string>
-    <string name="pantalla1_turno">MAÑANA</string>
+    <string name="pantalla1_boton1">Regresar</string>
     
+    <string name="pantalla3_boton1">Consultar</string>
 </resources>

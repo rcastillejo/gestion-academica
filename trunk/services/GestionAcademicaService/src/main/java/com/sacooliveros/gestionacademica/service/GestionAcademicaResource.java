@@ -10,16 +10,19 @@ import com.sacooliveros.gestionacademica.bean.AsistenciaBean;
 import com.sacooliveros.gestionacademica.bean.DetalleAsistenciaBean;
 import com.sacooliveros.gestionacademica.bean.NotaBean;
 import com.sacooliveros.gestionacademica.bean.SimulacroBean;
+import com.sacooliveros.gestionacademica.proxy.AbstractProxy;
+import com.sacooliveros.gestionacademica.proxy.ColegioProxy;
+import com.sacooliveros.gestionacademica.http.HttpControl;
 import java.util.ArrayList;
 import java.util.List;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.UriInfo;
-import javax.ws.rs.PathParam;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
-import javax.ws.rs.GET;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.UriInfo;
 
 /**
  * REST Web Service
@@ -28,7 +31,9 @@ import javax.ws.rs.Produces;
  */
 @Path("GestionAcademica")
 public class GestionAcademicaResource {
-
+    private final ColegioProxy colegioProxy;
+    
+    
     @Context
     private UriInfo context;
 
@@ -36,6 +41,7 @@ public class GestionAcademicaResource {
      * Creates a new instance of GestionAcademicaResource
      */
     public GestionAcademicaResource() {
+        colegioProxy = new ColegioProxy();
     }
 
     /**
@@ -51,30 +57,42 @@ public class GestionAcademicaResource {
     @Path("/alumno/{id}")
     @Produces("application/json")
     public String getAlumno(@PathParam("id") String id) {
-        Gson gson = new Gson();
-        AlumnoBean alumno = new AlumnoBean();
-        alumno.setId("123");
-        alumno.setNombres("Luis Ricardo");
-        alumno.setApellidos("Castillejo Luna");
-        alumno.setTelefono("12345678");
-        alumno.setCorreo("rcastillejo@gmail.com");
+        System.out.println("Obteniendo alumno por " + id + " ...");
+        String response;
+        /*Gson gson = new Gson();
+         AlumnoBean alumno = new AlumnoBean();
+         alumno.setId(id);
+         alumno.setNombres("Luis Ricardo");
+         alumno.setApellidos("Castillejo Luna");
+         alumno.setTelefono("12345678");
+         alumno.setCorreo("rcastillejo@gmail.com");
+         alumno.setAula("305");
+         alumno.setNivel("01");
+         return gson.toJson(alumno);*/ 
+        
+        response = colegioProxy.getAlumno(id);
 
-        return gson.toJson(alumno);
+        System.out.println("Alumno obtenido " + response);
+        return response;
     }
 
     /**
      * Actualizar Datos
      *
-     * @param id
-     * @return
+     * @param content
      */
     @PUT
     @Path("/alumno")
     @Consumes("application/json")
     public void putAlumno(String content) {
-        Gson gson = new Gson();
-        AlumnoBean alumno = gson.fromJson(content, AlumnoBean.class);
-        System.out.println("alumno:\n" + alumno);
+        
+        String response;
+        /*Gson gson = new Gson();
+        AlumnoBean alumno = gson.fromJson(content, AlumnoBean.class);*/
+        
+        response = colegioProxy.putAlumno(content);
+        
+        System.out.println("alumno:\n" + response);
     }
 
     /**
@@ -87,7 +105,8 @@ public class GestionAcademicaResource {
     @Path("/notas/{alumnoId}")
     @Produces("application/json")
     public String getNotas(@PathParam("alumnoId") String alumnoId) {
-        Gson gson = new Gson();
+        String response;
+        /*Gson gson = new Gson();
 
         List<NotaBean> notas = new ArrayList<NotaBean>();
         NotaBean nota = new NotaBean();
@@ -97,9 +116,10 @@ public class GestionAcademicaResource {
         nota.setPeriodo("1er Bimestre");
         nota.setProfesor("Ricarod Castillejo");
 
-        notas.add(nota);
+        notas.add(nota);*/
 
-        return gson.toJson(notas);
+        response = colegioProxy.getNotas(alumnoId);
+        return response;
     }
 
     /**
@@ -112,17 +132,19 @@ public class GestionAcademicaResource {
     @Path("/simulacro/{alumnoId}")
     @Produces("application/json")
     public String getSimulacro(@PathParam("alumnoId") String alumnoId) {
+        String response;
 
         //Invocar al servicio ColegioService
-
-        Gson gson = new Gson();
+        /*Gson gson = new Gson();
         SimulacroBean simulacro = new SimulacroBean();
         simulacro.setAlumnoId(alumnoId);
         simulacro.setCurso("Matematicas");
         simulacro.setNota(15);
         simulacro.setPeriodo("1er Bimestre");
 
-        return gson.toJson(simulacro);
+        return gson.toJson(simulacro);*/
+        response = colegioProxy.getNotas(alumnoId);
+        return response;
     }
 
     /**
@@ -136,7 +158,8 @@ public class GestionAcademicaResource {
     @Produces("application/json")
     public String getAsistencia(@PathParam("alumnoId") String alumnoId) {
 
-        Gson gson = new Gson();
+        String response;
+        /*Gson gson = new Gson();
 
         DetalleAsistenciaBean dia = new DetalleAsistenciaBean();
         dia.setAnio(2012);
@@ -157,7 +180,9 @@ public class GestionAcademicaResource {
         asistencia.setTotalNom(0);
         asistencia.setTotalTar(0);
         asistencia.setDetalleAsistencia(dias);
-        
-        return gson.toJson(asistencia);
+
+        return gson.toJson(asistencia);*/
+        response = colegioProxy.getAsistencia(alumnoId);
+        return response;
     }
 }

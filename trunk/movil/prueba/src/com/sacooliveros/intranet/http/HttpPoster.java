@@ -73,10 +73,15 @@ public class HttpPoster {
 	//private String HEADER_END_TAG = "</string>";
 
 	public void invoke() throws ClientProtocolException, IOException, Exception {
+		
 		HttpParams httpParams = new BasicHttpParams();
 		HttpConnectionParams.setConnectionTimeout(httpParams, this.timeOut);
 		HttpConnectionParams.setSoTimeout(httpParams, this.timeOut);
+		
 		DefaultHttpClient httpClient = new DefaultHttpClient(httpParams);
+		//httpClient.getParams().setParameter(ConnRoutePNames.DEFAULT_PROXY, proxy);
+		
+		
 		HttpPost httpPost = new HttpPost(this.url);
 
 		Log.d(tag, "URL = " + this.url);
