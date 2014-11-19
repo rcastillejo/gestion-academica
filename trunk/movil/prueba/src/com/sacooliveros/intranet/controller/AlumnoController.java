@@ -1,6 +1,6 @@
 package com.sacooliveros.intranet.controller;
 
-import com.sacooliveros.intranet.bean.AlumnoBean;
+import com.sacooliveros.gestionacademica.bean.AlumnoBean;
 
 public class AlumnoController  extends GestionAcademicaService{
 	

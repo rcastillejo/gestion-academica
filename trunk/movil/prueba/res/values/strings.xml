@@ -33,4 +33,13 @@
     <string name="pantalla1_boton1">Regresar</string>
     
     <string name="pantalla3_boton1">Consultar</string>
+    
+    
+    
+    <!-- Frm Login -->
+    <string name="frmlogin_etiqueta1">Usuario</string>
+    <string name="frmlogin_etiqueta2">Contraseña</string>
+    <string name="frmlogin_boton1">Ingresar</string>
+    <string name="frmlogin_boton2">Salir</string>
+    
 </resources>

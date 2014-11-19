@@ -1,6 +1,6 @@
 package com.example.prueba;
 
-import com.sacooliveros.intranet.bean.AlumnoBean;
+import com.sacooliveros.gestionacademica.bean.AlumnoBean;
 import com.sacooliveros.intranet.controller.AlumnoController;
 import com.sacooliveros.intranet.util.Loadingable;
 import com.sacooliveros.intranet.util.HyundaiProgressDialog;
@@ -97,7 +97,7 @@ public class Pantalla2 extends MainActivity implements OnClickListener, Loadinga
 	public void afterLoadingData() {
 		// TODO Auto-generated method stub
 		if (mensaje.length() == 0){
-			caja1.setText(bean.getApellidos());
+			caja1.setText(bean.getApellidoPaterno());
 			caja2.setText(bean.getNombres());
 		}else{
 			Toast.makeText(this, mensaje, Toast.LENGTH_LONG).show();

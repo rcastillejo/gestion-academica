@@ -27,45 +27,52 @@ public final class R {
         public static final int loading_background=0x7f020002;
     }
     public static final class id {
-        public static final int action_settings=0x7f080020;
-        public static final int imgProgressImage=0x7f080002;
+        public static final int action_settings=0x7f080026;
+        public static final int frmlogin_boton1=0x7f080006;
+        public static final int frmlogin_boton2=0x7f080007;
+        public static final int frmlogin_etiqueta1=0x7f080002;
+        public static final int frmlogin_etiqueta2=0x7f080004;
+        public static final int frmlogin_textbox1=0x7f080003;
+        public static final int frmlogin_textbox2=0x7f080005;
+        public static final int imgProgressImage=0x7f080008;
         public static final int main_boton1=0x7f080000;
         public static final int main_boton2=0x7f080001;
-        public static final int pantalla1_boton1=0x7f080019;
-        public static final int pantalla1_dato1=0x7f080004;
-        public static final int pantalla1_dato10=0x7f080013;
-        public static final int pantalla1_dato11=0x7f080016;
-        public static final int pantalla1_dato12=0x7f080018;
-        public static final int pantalla1_dato3=0x7f080005;
-        public static final int pantalla1_dato4=0x7f080007;
-        public static final int pantalla1_dato5=0x7f08000a;
-        public static final int pantalla1_dato6=0x7f08000b;
-        public static final int pantalla1_dato7=0x7f08000e;
-        public static final int pantalla1_dato8=0x7f08000f;
-        public static final int pantalla1_dato9=0x7f080012;
-        public static final int pantalla1_etiqueta1=0x7f080003;
-        public static final int pantalla1_etiqueta10=0x7f080014;
-        public static final int pantalla1_etiqueta11=0x7f080015;
-        public static final int pantalla1_etiqueta12=0x7f080017;
-        public static final int pantalla1_etiqueta3=0x7f080006;
-        public static final int pantalla1_etiqueta4=0x7f080008;
-        public static final int pantalla1_etiqueta5=0x7f080009;
-        public static final int pantalla1_etiqueta6=0x7f08000c;
-        public static final int pantalla1_etiqueta7=0x7f08000d;
-        public static final int pantalla1_etiqueta8=0x7f080010;
-        public static final int pantalla1_etiqueta9=0x7f080011;
-        public static final int pantalla2_boton1=0x7f08001e;
-        public static final int pantalla2_boton2=0x7f08001f;
-        public static final int pantalla2_etiqueta1=0x7f08001a;
-        public static final int pantalla2_etiqueta2=0x7f08001c;
-        public static final int pantalla2_textbox1=0x7f08001b;
-        public static final int pantalla2_textbox2=0x7f08001d;
+        public static final int pantalla1_boton1=0x7f08001f;
+        public static final int pantalla1_dato1=0x7f08000a;
+        public static final int pantalla1_dato10=0x7f080019;
+        public static final int pantalla1_dato11=0x7f08001c;
+        public static final int pantalla1_dato12=0x7f08001e;
+        public static final int pantalla1_dato3=0x7f08000b;
+        public static final int pantalla1_dato4=0x7f08000d;
+        public static final int pantalla1_dato5=0x7f080010;
+        public static final int pantalla1_dato6=0x7f080011;
+        public static final int pantalla1_dato7=0x7f080014;
+        public static final int pantalla1_dato8=0x7f080015;
+        public static final int pantalla1_dato9=0x7f080018;
+        public static final int pantalla1_etiqueta1=0x7f080009;
+        public static final int pantalla1_etiqueta10=0x7f08001a;
+        public static final int pantalla1_etiqueta11=0x7f08001b;
+        public static final int pantalla1_etiqueta12=0x7f08001d;
+        public static final int pantalla1_etiqueta3=0x7f08000c;
+        public static final int pantalla1_etiqueta4=0x7f08000e;
+        public static final int pantalla1_etiqueta5=0x7f08000f;
+        public static final int pantalla1_etiqueta6=0x7f080012;
+        public static final int pantalla1_etiqueta7=0x7f080013;
+        public static final int pantalla1_etiqueta8=0x7f080016;
+        public static final int pantalla1_etiqueta9=0x7f080017;
+        public static final int pantalla2_boton1=0x7f080024;
+        public static final int pantalla2_boton2=0x7f080025;
+        public static final int pantalla2_etiqueta1=0x7f080020;
+        public static final int pantalla2_etiqueta2=0x7f080022;
+        public static final int pantalla2_textbox1=0x7f080021;
+        public static final int pantalla2_textbox2=0x7f080023;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
-        public static final int loading_progress_dialog=0x7f030001;
-        public static final int pantalla1=0x7f030002;
-        public static final int pantalla2=0x7f030003;
+        public static final int frm_login=0x7f030001;
+        public static final int loading_progress_dialog=0x7f030002;
+        public static final int pantalla1=0x7f030003;
+        public static final int pantalla2=0x7f030004;
     }
     public static final class menu {
         public static final int main=0x7f070000;
@@ -73,6 +80,12 @@ public final class R {
     public static final class string {
         public static final int action_settings=0x7f050002;
         public static final int app_name=0x7f050000;
+        public static final int frmlogin_boton1=0x7f050019;
+        public static final int frmlogin_boton2=0x7f05001a;
+        /**  Frm Login 
+         */
+        public static final int frmlogin_etiqueta1=0x7f050017;
+        public static final int frmlogin_etiqueta2=0x7f050018;
         public static final int hello_world=0x7f050001;
         public static final int main_boton1=0x7f050003;
         public static final int main_boton2=0x7f050004;
