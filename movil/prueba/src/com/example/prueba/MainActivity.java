@@ -62,7 +62,7 @@ public class MainActivity extends Activity  implements OnClickListener{
 	public void onClick(View v) {
 		Intent i;
 		if(v.equals(btnConsultar)){
-    		i = new Intent(this, Pantalla1.class);    		
+    		i = new Intent(this, ConsultarAlumnoActivity.class);    		
     		startActivity(i);
 		}else if (v.equals(btnOtros)){
 			i = new Intent(this, Pantalla2.class);			
