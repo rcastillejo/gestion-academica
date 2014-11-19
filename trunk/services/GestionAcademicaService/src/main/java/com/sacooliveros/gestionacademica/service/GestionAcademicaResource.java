@@ -5,6 +5,9 @@
 package com.sacooliveros.gestionacademica.service;
 
 import com.google.gson.Gson;
+import com.sacooliveros.gestionacademica.bean.AlumnoBean;
+import com.sacooliveros.gestionacademica.bean.LoginBean;
+import com.sacooliveros.gestionacademica.message.MessageError;
 import com.sacooliveros.gestionacademica.proxy.ColegioProxy;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -26,9 +29,10 @@ import pe.saco.webservices.WebServiceAlumno_Service;
  */
 @Path("GestionAcademica")
 public class GestionAcademicaResource {
+
     private static final Logger log = LoggerFactory.getLogger(GestionAcademicaResource.class);
-    
-    private final WebServiceAlumno_Service seguridadProxy;
+
+    private final WebServiceAlumno_Service alumnoService;
     private final ColegioProxy colegioProxy;
 
     @Context
@@ -39,7 +43,7 @@ public class GestionAcademicaResource {
      */
     public GestionAcademicaResource() {
         colegioProxy = new ColegioProxy();
-        seguridadProxy =  new WebServiceAlumno_Service();
+        alumnoService = new WebServiceAlumno_Service();
     }
 
     /**
@@ -49,6 +53,7 @@ public class GestionAcademicaResource {
      * Validar Login
      *
      * @param username
+     * @param password
      * @return
      */
     @GET
@@ -59,13 +64,22 @@ public class GestionAcademicaResource {
         int r;
         String response;
         Gson gson = new Gson();
-        
-        WebServiceAlumno port = seguridadProxy.getWebServiceAlumnoPort();
-        
-        r = port.validarAlumno(username, password);
-        response = gson.toJson(r);
-        
-        log.debug("login obtenido " + r);
+
+        LoginBean login = new LoginBean();
+
+        try {
+            WebServiceAlumno port = alumnoService.getWebServiceAlumnoPort();
+            r = port.validarAlumno(username, password);
+            
+            login.setSuccess(r == 1 ? Boolean.TRUE : Boolean.FALSE);
+            
+            log.debug("login obtenido " + r);
+        } catch (Exception e) {
+            log.error(MessageError.LOGIN + "[" + username + "]", e);
+            login.setMensajeError(MessageError.LOGIN + "[" + username + "]");
+        }
+        response = gson.toJson(login);
+
         return response;
     }
 
@@ -80,20 +94,37 @@ public class GestionAcademicaResource {
     @Produces("application/json")
     public String getAlumno(@PathParam("id") String id) {
         log.debug("Obteniendo alumno por " + id + " ...");
+        AlumnoBean alumnoResponse;
+        pe.saco.webservices.Alumno alumno;
         String response;
-        /*Gson gson = new Gson();
-         AlumnoBean alumno = new AlumnoBean();
-         alumno.setId(id);
-         alumno.setNombres("Luis Ricardo");
-         alumno.setApellidos("Castillejo Luna");
-         alumno.setTelefono("12345678");
-         alumno.setCorreo("rcastillejo@gmail.com");
-         alumno.setAula("305");
-         alumno.setNivel("01");
-         return gson.toJson(alumno);*/
+        Gson gson = new Gson();
 
-        response = colegioProxy.getAlumno(id);
+        alumnoResponse = new AlumnoBean();
+        try {
+            WebServiceAlumno port = alumnoService.getWebServiceAlumnoPort();
+            alumno = port.consultarAlumno(id);
 
+            alumnoResponse.setApellidoPaterno(alumno.getApellidopaterno());
+            alumnoResponse.setApellidoMaterno(alumno.getApellidopaterno());
+            alumnoResponse.setAula(alumno.getAula());
+            alumnoResponse.setCentro(alumno.getCentro());
+            alumnoResponse.setCorreo(alumno.getCorreo());
+            alumnoResponse.setGrado(alumno.getGrado());
+            alumnoResponse.setId(alumno.getUsuario());
+            //alumnoResponse.setLocal(alumno.get());
+            alumnoResponse.setNivel(alumno.getNivel());
+            alumnoResponse.setNombres(alumno.getNombres());
+            alumnoResponse.setSeccion(alumno.getSeccion());
+            alumnoResponse.setTelefono(alumno.getTelefono());
+            alumnoResponse.setTipoCentro(alumno.getTipoCentro());
+            alumnoResponse.setTipoGrado(alumno.getTipoGrado());
+            alumnoResponse.setTurno(alumno.getTurno());
+
+        } catch (Exception e) {
+            log.error(MessageError.GET_ALUMNO + "[" + id + "]", e);
+            alumnoResponse.setMensajeError(MessageError.GET_ALUMNO + "[" + id + "]");
+        }
+        response = gson.toJson(alumnoResponse);
         log.debug("Alumno obtenido " + response);
         return response;
     }
