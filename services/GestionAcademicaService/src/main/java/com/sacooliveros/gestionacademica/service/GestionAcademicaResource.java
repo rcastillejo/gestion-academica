@@ -5,16 +5,7 @@
 package com.sacooliveros.gestionacademica.service;
 
 import com.google.gson.Gson;
-import com.sacooliveros.gestionacademica.bean.AlumnoBean;
-import com.sacooliveros.gestionacademica.bean.AsistenciaBean;
-import com.sacooliveros.gestionacademica.bean.DetalleAsistenciaBean;
-import com.sacooliveros.gestionacademica.bean.NotaBean;
-import com.sacooliveros.gestionacademica.bean.SimulacroBean;
-import com.sacooliveros.gestionacademica.proxy.AbstractProxy;
 import com.sacooliveros.gestionacademica.proxy.ColegioProxy;
-import com.sacooliveros.gestionacademica.http.HttpControl;
-import java.util.ArrayList;
-import java.util.List;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.PUT;
@@ -23,6 +14,10 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import pe.saco.webservices.WebServiceAlumno;
+import pe.saco.webservices.WebServiceAlumno_Service;
 
 /**
  * REST Web Service
@@ -31,9 +26,11 @@ import javax.ws.rs.core.UriInfo;
  */
 @Path("GestionAcademica")
 public class GestionAcademicaResource {
+    private static final Logger log = LoggerFactory.getLogger(GestionAcademicaResource.class);
+    
+    private final WebServiceAlumno_Service seguridadProxy;
     private final ColegioProxy colegioProxy;
-    
-    
+
     @Context
     private UriInfo context;
 
@@ -42,11 +39,36 @@ public class GestionAcademicaResource {
      */
     public GestionAcademicaResource() {
         colegioProxy = new ColegioProxy();
+        seguridadProxy =  new WebServiceAlumno_Service();
     }
 
     /**
      * Funcionalidads del Catalogo
      */
+    /**
+     * Validar Login
+     *
+     * @param username
+     * @return
+     */
+    @GET
+    @Path("/login/{username}/{password}")
+    @Produces("application/json")
+    public String login(@PathParam("username") String username, @PathParam("password") String password) {
+        log.debug("login " + username + ", " + password + " ...");
+        int r;
+        String response;
+        Gson gson = new Gson();
+        
+        WebServiceAlumno port = seguridadProxy.getWebServiceAlumnoPort();
+        
+        r = port.validarAlumno(username, password);
+        response = gson.toJson(r);
+        
+        log.debug("login obtenido " + r);
+        return response;
+    }
+
     /**
      * Consultar Datos
      *
@@ -57,7 +79,7 @@ public class GestionAcademicaResource {
     @Path("/alumno/{id}")
     @Produces("application/json")
     public String getAlumno(@PathParam("id") String id) {
-        System.out.println("Obteniendo alumno por " + id + " ...");
+        log.debug("Obteniendo alumno por " + id + " ...");
         String response;
         /*Gson gson = new Gson();
          AlumnoBean alumno = new AlumnoBean();
@@ -68,11 +90,11 @@ public class GestionAcademicaResource {
          alumno.setCorreo("rcastillejo@gmail.com");
          alumno.setAula("305");
          alumno.setNivel("01");
-         return gson.toJson(alumno);*/ 
-        
+         return gson.toJson(alumno);*/
+
         response = colegioProxy.getAlumno(id);
 
-        System.out.println("Alumno obtenido " + response);
+        log.debug("Alumno obtenido " + response);
         return response;
     }
 
@@ -85,14 +107,14 @@ public class GestionAcademicaResource {
     @Path("/alumno")
     @Consumes("application/json")
     public void putAlumno(String content) {
-        
+
         String response;
         /*Gson gson = new Gson();
-        AlumnoBean alumno = gson.fromJson(content, AlumnoBean.class);*/
-        
+         AlumnoBean alumno = gson.fromJson(content, AlumnoBean.class);*/
+
         response = colegioProxy.putAlumno(content);
-        
-        System.out.println("alumno:\n" + response);
+
+        log.debug("alumno:\n" + response);
     }
 
     /**
@@ -108,15 +130,15 @@ public class GestionAcademicaResource {
         String response;
         /*Gson gson = new Gson();
 
-        List<NotaBean> notas = new ArrayList<NotaBean>();
-        NotaBean nota = new NotaBean();
-        nota.setAlumnoId(alumnoId);
-        nota.setCurso("Matematicas");
-        nota.setNota(15);
-        nota.setPeriodo("1er Bimestre");
-        nota.setProfesor("Ricarod Castillejo");
+         List<NotaBean> notas = new ArrayList<NotaBean>();
+         NotaBean nota = new NotaBean();
+         nota.setAlumnoId(alumnoId);
+         nota.setCurso("Matematicas");
+         nota.setNota(15);
+         nota.setPeriodo("1er Bimestre");
+         nota.setProfesor("Ricarod Castillejo");
 
-        notas.add(nota);*/
+         notas.add(nota);*/
 
         response = colegioProxy.getNotas(alumnoId);
         return response;
@@ -136,13 +158,13 @@ public class GestionAcademicaResource {
 
         //Invocar al servicio ColegioService
         /*Gson gson = new Gson();
-        SimulacroBean simulacro = new SimulacroBean();
-        simulacro.setAlumnoId(alumnoId);
-        simulacro.setCurso("Matematicas");
-        simulacro.setNota(15);
-        simulacro.setPeriodo("1er Bimestre");
+         SimulacroBean simulacro = new SimulacroBean();
+         simulacro.setAlumnoId(alumnoId);
+         simulacro.setCurso("Matematicas");
+         simulacro.setNota(15);
+         simulacro.setPeriodo("1er Bimestre");
 
-        return gson.toJson(simulacro);*/
+         return gson.toJson(simulacro);*/
         response = colegioProxy.getNotas(alumnoId);
         return response;
     }
@@ -161,27 +183,27 @@ public class GestionAcademicaResource {
         String response;
         /*Gson gson = new Gson();
 
-        DetalleAsistenciaBean dia = new DetalleAsistenciaBean();
-        dia.setAnio(2012);
-        dia.setDia(12);
-        dia.setMes(12);
-        dia.setEstado("TAR");
+         DetalleAsistenciaBean dia = new DetalleAsistenciaBean();
+         dia.setAnio(2012);
+         dia.setDia(12);
+         dia.setMes(12);
+         dia.setEstado("TAR");
 
-        List dias = new ArrayList<DetalleAsistenciaBean>();
-        dias.add(dia);
+         List dias = new ArrayList<DetalleAsistenciaBean>();
+         dias.add(dia);
 
-        AsistenciaBean asistencia = new AsistenciaBean();
-        asistencia.setAlumnoId(alumnoId);
-        asistencia.setFechaIni("12/12/12");
-        asistencia.setFechaFin("12/12/12");
-        asistencia.setTotalAsi(10);
-        asistencia.setTotalIna(10);
-        asistencia.setTotalJus(0);
-        asistencia.setTotalNom(0);
-        asistencia.setTotalTar(0);
-        asistencia.setDetalleAsistencia(dias);
+         AsistenciaBean asistencia = new AsistenciaBean();
+         asistencia.setAlumnoId(alumnoId);
+         asistencia.setFechaIni("12/12/12");
+         asistencia.setFechaFin("12/12/12");
+         asistencia.setTotalAsi(10);
+         asistencia.setTotalIna(10);
+         asistencia.setTotalJus(0);
+         asistencia.setTotalNom(0);
+         asistencia.setTotalTar(0);
+         asistencia.setDetalleAsistencia(dias);
 
-        return gson.toJson(asistencia);*/
+         return gson.toJson(asistencia);*/
         response = colegioProxy.getAsistencia(alumnoId);
         return response;
     }
