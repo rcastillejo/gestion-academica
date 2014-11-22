@@ -15,6 +15,8 @@ public class AsistenciaBean {
 
     @SerializedName("@alumnoId")
     private String alumnoId;
+    @SerializedName("@mes")
+    private String mes;
     @SerializedName("@fechaIni")
     private String fechaIni;
     @SerializedName("@fechaFin")
@@ -44,6 +46,14 @@ public class AsistenciaBean {
         this.alumnoId = alumnoId;
     }
 
+    public String getMes() {
+        return mes;
+    }
+
+    public void setMes(String mes) {
+        this.mes = mes;
+    }
+    
     public String getFechaIni() {
         return fechaIni;
     }

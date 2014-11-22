@@ -12,15 +12,11 @@ import com.google.gson.annotations.SerializedName;
  */
 public class NotaBean {
     @SerializedName("@alumnoId")
-    private String alumnoId;    
-    @SerializedName("@periodo")
-    private String periodo;
+    private String alumnoId;
     @SerializedName("@curso")
     private String curso;
-    @SerializedName("@profesor")
-    private String profesor;
     @SerializedName("@nota")
-    private double nota;
+    private String nota;
     
     @SerializedName("@mensajeError")
     private String mensajeError;
@@ -33,14 +29,6 @@ public class NotaBean {
         this.alumnoId = alumnoId;
     }
 
-    public String getPeriodo() {
-        return periodo;
-    }
-
-    public void setPeriodo(String periodo) {
-        this.periodo = periodo;
-    }
-
     public String getCurso() {
         return curso;
     }
@@ -49,19 +37,11 @@ public class NotaBean {
         this.curso = curso;
     }
 
-    public String getProfesor() {
-        return profesor;
-    }
-
-    public void setProfesor(String profesor) {
-        this.profesor = profesor;
-    }
-
-    public double getNota() {
+    public String getNota() {
         return nota;
     }
 
-    public void setNota(double nota) {
+    public void setNota(String nota) {
         this.nota = nota;
     }
 
@@ -75,7 +55,7 @@ public class NotaBean {
 
     @Override
     public String toString() {
-        return "NotaBean{" + "alumnoId=" + alumnoId + ", periodo=" + periodo + ", curso=" + curso + ", profesor=" + profesor + ", nota=" + nota + ", mensajeError=" + mensajeError + '}';
+        return "NotaBean{" + "alumnoId=" + alumnoId + ", curso=" + curso + ", nota=" + nota + ", mensajeError=" + mensajeError + '}';
     }
 
 
