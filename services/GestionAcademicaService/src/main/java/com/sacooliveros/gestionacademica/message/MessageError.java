@@ -14,5 +14,10 @@ public interface MessageError {
     
     String GET_ALUMNO = "Error al obtener alumno:";
     String LOGIN = "Error al realizar login:";
+    String GET_PERIODOS = "Error al obtener periodos del alumno:";
+    String GET_NOTAS = "Error al obtener notas del alumno:";
+    String GET_ASISTENCIA = "Error al obtener asistencia del alumno:";
+    String GET_SIMULACRO = "Error al obtener simulacros del alumno:";
+    String GET_PAGO = "Error al obtener pagos del alumno:";
     
 }

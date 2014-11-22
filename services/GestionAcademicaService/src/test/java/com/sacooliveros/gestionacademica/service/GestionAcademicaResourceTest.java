@@ -7,6 +7,7 @@ package com.sacooliveros.gestionacademica.service;
 
 import com.google.gson.Gson;
 import com.sacooliveros.gestionacademica.bean.AlumnoBean;
+import com.sacooliveros.gestionacademica.bean.ListadoPeriodoBean;
 import com.sacooliveros.gestionacademica.bean.LoginBean;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -66,7 +67,7 @@ public class GestionAcademicaResourceTest {
     @Test
     public void testGetAlumno() {
         System.out.println("testGetAlumno");
-        String username = "151300763";
+        String username = "6150";
         GestionAcademicaResource instance = new GestionAcademicaResource();
         AlumnoBean expResult = new AlumnoBean();
         String result = instance.getAlumno(username);
@@ -76,4 +77,35 @@ public class GestionAcademicaResourceTest {
         assertEquals(expResult.getId(), alumnoResult.getId());
     }
 
+    /**
+     * Test of login method, of class GestionAcademicaResource.
+     */
+    @Test
+    public void testGetPeriodos() {
+        System.out.println("testGetPeriodos");
+        String username = "6150";
+        GestionAcademicaResource instance = new GestionAcademicaResource();
+        int periodos = 1;
+        String result = instance.getPeriodos(username);
+        Gson gson = new Gson();
+        ListadoPeriodoBean listadoPeriodoResult = gson.fromJson(result, ListadoPeriodoBean.class);
+        
+        assertEquals(periodos, listadoPeriodoResult.getPeriodos().size());
+    }
+    
+    /**
+     * Test of login method, of class GestionAcademicaResource.
+     */
+    @Test
+    public void testGetNotas() {
+        System.out.println("testGetNotas");
+        String username = "151300763";
+        GestionAcademicaResource instance = new GestionAcademicaResource();
+        int periodos = 6;
+        String result = instance.getNotas(username);
+        Gson gson = new Gson();
+        ListadoPeriodoBean listadoPeriodoResult = gson.fromJson(result, ListadoPeriodoBean.class);
+        
+        assertEquals(periodos, listadoPeriodoResult.getPeriodos().size());
+    }
 }

@@ -6,9 +6,22 @@ package com.sacooliveros.gestionacademica.service;
 
 import com.google.gson.Gson;
 import com.sacooliveros.gestionacademica.bean.AlumnoBean;
+import com.sacooliveros.gestionacademica.bean.AsistenciaBean;
+import com.sacooliveros.gestionacademica.bean.DetalleAsistenciaBean;
+import com.sacooliveros.gestionacademica.bean.ListadoPagoBean;
+import com.sacooliveros.gestionacademica.bean.ListadoPeriodoBean;
+import com.sacooliveros.gestionacademica.bean.ListadoSimulacroBean;
 import com.sacooliveros.gestionacademica.bean.LoginBean;
+import com.sacooliveros.gestionacademica.bean.NotaBean;
+import com.sacooliveros.gestionacademica.bean.PagoBean;
+import com.sacooliveros.gestionacademica.bean.PeriodoBean;
+import com.sacooliveros.gestionacademica.bean.SimulacroBean;
 import com.sacooliveros.gestionacademica.message.MessageError;
 import com.sacooliveros.gestionacademica.proxy.ColegioProxy;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.PUT;
@@ -19,6 +32,7 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import pe.saco.webservices.Simulacro;
 import pe.saco.webservices.WebServiceAlumno;
 import pe.saco.webservices.WebServiceAlumno_Service;
 
@@ -61,7 +75,7 @@ public class GestionAcademicaResource {
     @Produces("application/json")
     public String login(@PathParam("username") String username, @PathParam("password") String password) {
         log.debug("login " + username + ", " + password + " ...");
-        int r;
+        int codigoUsuario;
         String response;
         Gson gson = new Gson();
 
@@ -69,11 +83,11 @@ public class GestionAcademicaResource {
 
         try {
             WebServiceAlumno port = alumnoService.getWebServiceAlumnoPort();
-            r = port.validarAlumno(username, password);
+            codigoUsuario = port.validarAlumno(username, password);
+            login.setCodigoAlumno(codigoUsuario + "");
             
-            login.setSuccess(r == 1 ? Boolean.TRUE : Boolean.FALSE);
-            
-            log.debug("login obtenido " + r);
+            login.setSuccess(codigoUsuario != 0);
+            log.debug("login obtenido " + codigoUsuario);
         } catch (Exception e) {
             log.error(MessageError.LOGIN + "[" + username + "]", e);
             login.setMensajeError(MessageError.LOGIN + "[" + username + "]");
@@ -155,24 +169,86 @@ public class GestionAcademicaResource {
      * @return
      */
     @GET
+    @Path("/periodos/{alumnoId}")
+    @Produces("application/json")
+    public String getPeriodos(@PathParam("alumnoId") String alumnoId) {
+        String response;
+        List<PeriodoBean> periodoList;
+        ListadoPeriodoBean listadoPeriodoResponse;
+        List<pe.saco.webservices.Periodo> periodos;
+        Gson gson = new Gson();
+
+        listadoPeriodoResponse = new ListadoPeriodoBean();
+        try {
+            WebServiceAlumno port = alumnoService.getWebServiceAlumnoPort();
+            periodos = port.consultarPeriodo(alumnoId);
+
+            periodoList = new ArrayList<PeriodoBean>();
+            for (pe.saco.webservices.Periodo periodo : periodos) {
+                periodoList.add(new PeriodoBean(periodo.getCodigoPeriodo(), periodo.getNombrePeriodo()));
+            }
+
+            listadoPeriodoResponse.setPeriodos(periodoList);
+        } catch (Exception e) {
+            log.error(MessageError.GET_PERIODOS + "[" + alumnoId + "]", e);
+            listadoPeriodoResponse.setMensajeError(MessageError.GET_PERIODOS + "[" + alumnoId + "]");
+        }
+        response = gson.toJson(listadoPeriodoResponse);
+        log.debug("Periodos obtenido " + response);
+        return response;
+    }
+
+    /**
+     * Consultar Notas
+     *
+     * @param alumnoId
+     * @return
+     */
+    @GET
     @Path("/notas/{alumnoId}")
     @Produces("application/json")
     public String getNotas(@PathParam("alumnoId") String alumnoId) {
         String response;
-        /*Gson gson = new Gson();
+        Map<String, PeriodoBean> periodoRepo;
+        ListadoPeriodoBean listadoPeriodoResponse;
+        List<pe.saco.webservices.Nota> notas;
+        Gson gson = new Gson();
 
-         List<NotaBean> notas = new ArrayList<NotaBean>();
-         NotaBean nota = new NotaBean();
-         nota.setAlumnoId(alumnoId);
-         nota.setCurso("Matematicas");
-         nota.setNota(15);
-         nota.setPeriodo("1er Bimestre");
-         nota.setProfesor("Ricarod Castillejo");
+        listadoPeriodoResponse = new ListadoPeriodoBean();
+        try {
+            WebServiceAlumno port = alumnoService.getWebServiceAlumnoPort();
+            notas = port.consultarNotas(alumnoId);
 
-         notas.add(nota);*/
+            periodoRepo = new LinkedHashMap();
+            for (pe.saco.webservices.Nota nota : notas) {
+                populatePeriodo(periodoRepo, nota);
+            }
 
-        response = colegioProxy.getNotas(alumnoId);
+            listadoPeriodoResponse.setPeriodos(new ArrayList<PeriodoBean>(periodoRepo.values()));
+        } catch (Exception e) {
+            log.error(MessageError.GET_NOTAS + "[" + alumnoId + "]", e);
+            listadoPeriodoResponse.setMensajeError(MessageError.GET_NOTAS + "[" + alumnoId + "]");
+        }
+        response = gson.toJson(listadoPeriodoResponse);
+        log.debug("Notas obtenido " + response);
         return response;
+    }
+
+    private void populatePeriodo(Map<String, PeriodoBean> periodoRepo, pe.saco.webservices.Nota nota) {
+        PeriodoBean periodo = periodoRepo.get(nota.getPeriodo());
+        if (periodo == null) {
+            periodo = new PeriodoBean();
+            periodo.setNotas(new ArrayList<NotaBean>());
+            periodoRepo.put(nota.getPeriodo(), periodo);
+        }
+        addNota(periodo, nota);
+    }
+
+    private void addNota(PeriodoBean periodo, pe.saco.webservices.Nota nota) {
+        NotaBean notaResponse = new NotaBean();
+        notaResponse.setCurso(nota.getNombreCurso());
+        notaResponse.setNota(nota.getNota());
+        periodo.getNotas().add(notaResponse);
     }
 
     /**
@@ -187,16 +263,30 @@ public class GestionAcademicaResource {
     public String getSimulacro(@PathParam("alumnoId") String alumnoId) {
         String response;
 
-        //Invocar al servicio ColegioService
-        /*Gson gson = new Gson();
-         SimulacroBean simulacro = new SimulacroBean();
-         simulacro.setAlumnoId(alumnoId);
-         simulacro.setCurso("Matematicas");
-         simulacro.setNota(15);
-         simulacro.setPeriodo("1er Bimestre");
+        List<pe.saco.webservices.Simulacro> simulacros;
+        List<SimulacroBean> simulacrosResponse;
+        ListadoSimulacroBean listadoSimulacroResponse;
+        double resultadoSimulacro;
+        Gson gson = new Gson();
 
-         return gson.toJson(simulacro);*/
-        response = colegioProxy.getNotas(alumnoId);
+        listadoSimulacroResponse = new ListadoSimulacroBean();
+        try {
+            WebServiceAlumno port = alumnoService.getWebServiceAlumnoPort();
+            simulacros = port.consultarSimulacro(alumnoId);
+
+            simulacrosResponse = new ArrayList<SimulacroBean>();
+            for (pe.saco.webservices.Simulacro simulacro : simulacros) {
+                resultadoSimulacro = port.consultarResultadoSimulacro(alumnoId, simulacro.getCodigoSimulacro() + "");
+                simulacrosResponse.add(new SimulacroBean(alumnoId, simulacro.getNombreSimulacro(), resultadoSimulacro));
+            }
+
+            listadoSimulacroResponse.setSimulacros(simulacrosResponse);
+        } catch (Exception e) {
+            log.error(MessageError.GET_SIMULACRO + "[" + alumnoId + "]", e);
+            listadoSimulacroResponse.setMensajeError(MessageError.GET_SIMULACRO + "[" + alumnoId + "]");
+        }
+        response = gson.toJson(listadoSimulacroResponse);
+        log.debug("Simulacro obtenido " + response);
         return response;
     }
 
@@ -204,38 +294,88 @@ public class GestionAcademicaResource {
      * Consultar Asistencia
      *
      * @param alumnoId
+     * @param mes
      * @return
      */
     @GET
-    @Path("/asistencia/{alumnoId}")
+    @Path("/asistencia/{alumnoId}/{mes}")
+    @Produces("application/json")
+    public String getAsistencia(@PathParam("alumnoId") String alumnoId, @PathParam("mes") String mes) {
+
+        String response;
+        Gson gson = new Gson();
+        List<pe.saco.webservices.Asistencia> detalleAsistencia;
+        pe.saco.webservices.AsistenciaTotales totales;
+        List<DetalleAsistenciaBean> detalleAsistenciaResponse;
+        AsistenciaBean asistenciaResponse;
+
+        asistenciaResponse = new AsistenciaBean();
+        try {
+            WebServiceAlumno port = alumnoService.getWebServiceAlumnoPort();
+            totales = port.consultarAsistenciaTotales(alumnoId, mes);
+
+            asistenciaResponse.setAlumnoId(alumnoId);
+            asistenciaResponse.setMes(mes);
+            asistenciaResponse.setTotalAsi(totales.getAsi());
+            asistenciaResponse.setTotalIna(totales.getIna());
+            asistenciaResponse.setTotalJus(totales.getJus());
+            asistenciaResponse.setTotalNom(totales.getNom());
+            asistenciaResponse.setTotalPer(totales.getPer());
+            asistenciaResponse.setTotalTar(totales.getTar());
+
+            detalleAsistencia = port.consultarAsistencia(alumnoId, mes);
+
+            detalleAsistenciaResponse = new ArrayList<DetalleAsistenciaBean>();
+            for (pe.saco.webservices.Asistencia asistencia : detalleAsistencia) {
+                detalleAsistenciaResponse.add(new DetalleAsistenciaBean(asistencia.getDia(), mes, asistencia.getTipoAsistencia()));
+            }
+
+            asistenciaResponse.setDetalleAsistencia(detalleAsistenciaResponse);
+        } catch (Exception e) {
+            log.error(MessageError.GET_ASISTENCIA + "[" + alumnoId + "]", e);
+            asistenciaResponse.setMensajeError(MessageError.GET_ASISTENCIA + "[" + alumnoId + "]");
+        }
+        response = gson.toJson(asistenciaResponse);
+        log.debug("Asistencia obtenido " + response);
+        return response;
+    }
+
+    /**
+     * Consultar Pago
+     *
+     * @param alumnoId
+     * @return
+     */
+    @GET
+    @Path("/pago/{alumnoId}")
     @Produces("application/json")
     public String getAsistencia(@PathParam("alumnoId") String alumnoId) {
 
         String response;
-        /*Gson gson = new Gson();
+        Gson gson = new Gson();
+        List<pe.saco.webservices.Pago> pagos;
+        List<PagoBean> pagosResponse;
+        ListadoPagoBean listadoPagoResponse;
 
-         DetalleAsistenciaBean dia = new DetalleAsistenciaBean();
-         dia.setAnio(2012);
-         dia.setDia(12);
-         dia.setMes(12);
-         dia.setEstado("TAR");
+        listadoPagoResponse = new ListadoPagoBean();
+        try {
+            WebServiceAlumno port = alumnoService.getWebServiceAlumnoPort();
+            pagos = port.consultarPago(alumnoId);
 
-         List dias = new ArrayList<DetalleAsistenciaBean>();
-         dias.add(dia);
+            pagosResponse = new ArrayList<PagoBean>();
+            for (pe.saco.webservices.Pago pago : pagos) {
+                pagosResponse.add(new PagoBean(alumnoId, pago.getNombrePago(),
+                        pago.getMonto(), pago.getACta(), pago.getAPagar(), pago.getDcto(),
+                        pago.getFechaP(), pago.getFechaV(), pago.getMora()));
+            }
 
-         AsistenciaBean asistencia = new AsistenciaBean();
-         asistencia.setAlumnoId(alumnoId);
-         asistencia.setFechaIni("12/12/12");
-         asistencia.setFechaFin("12/12/12");
-         asistencia.setTotalAsi(10);
-         asistencia.setTotalIna(10);
-         asistencia.setTotalJus(0);
-         asistencia.setTotalNom(0);
-         asistencia.setTotalTar(0);
-         asistencia.setDetalleAsistencia(dias);
-
-         return gson.toJson(asistencia);*/
-        response = colegioProxy.getAsistencia(alumnoId);
+            listadoPagoResponse.setPagos(pagosResponse);
+        } catch (Exception e) {
+            log.error(MessageError.GET_PAGO + "[" + alumnoId + "]", e);
+            listadoPagoResponse.setMensajeError(MessageError.GET_PAGO + "[" + alumnoId + "]");
+        }
+        response = gson.toJson(listadoPagoResponse);
+        log.debug("Pagos obtenido " + response);
         return response;
     }
 }
