@@ -23,6 +23,17 @@ public class SimulacroBean {
     @SerializedName("@mensajeError")
     private String mensajeError;
 
+    public SimulacroBean(String alumnoId, String curso, double nota) {
+        this.alumnoId = alumnoId;
+        this.curso = curso;
+        this.nota = nota;
+    }
+
+    public SimulacroBean() {
+    }
+
+    
+    
     public String getAlumnoId() {
         return alumnoId;
     }

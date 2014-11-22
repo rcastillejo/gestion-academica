@@ -13,37 +13,46 @@ import com.google.gson.annotations.SerializedName;
 public class DetalleAsistenciaBean {
 
     @SerializedName("@dia")
-    private int dia;
+    private String dia;
     @SerializedName("@mes")
-    private int mes;
+    private String mes;
     @SerializedName("@anio")
-    private int anio;
+    private String anio;
     @SerializedName("@estado")
     private String estado;
     @SerializedName("@mensajeError")
     private String mensajeError;
 
-    public int getDia() {
+    public DetalleAsistenciaBean(String dia, String mes, String estado) {
+        this.dia = dia;
+        this.mes = mes;
+        this.estado = estado;
+    }
+
+    public DetalleAsistenciaBean() {
+    }
+
+    public String getDia() {
         return dia;
     }
 
-    public void setDia(int dia) {
+    public void setDia(String dia) {
         this.dia = dia;
     }
 
-    public int getMes() {
+    public String getMes() {
         return mes;
     }
 
-    public void setMes(int mes) {
+    public void setMes(String mes) {
         this.mes = mes;
     }
 
-    public int getAnio() {
+    public String getAnio() {
         return anio;
     }
 
-    public void setAnio(int anio) {
+    public void setAnio(String anio) {
         this.anio = anio;
     }
 
@@ -65,6 +74,7 @@ public class DetalleAsistenciaBean {
 
     @Override
     public String toString() {
-        return "AsistenciaDiaBean{" + "dia=" + dia + ", mes=" + mes + ", anio=" + anio + ", estado=" + estado + ", mensajeError=" + mensajeError + '}';
+        return "DetalleAsistenciaBean{" + "dia=" + dia + ", mes=" + mes + ", anio=" + anio + ", estado=" + estado + ", mensajeError=" + mensajeError + '}';
     }
+    
 }

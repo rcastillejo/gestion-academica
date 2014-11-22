@@ -7,34 +7,26 @@
 package com.sacooliveros.gestionacademica.bean;
 
 import com.google.gson.annotations.SerializedName;
+import java.util.List;
 
 /**
  *
  * @author Ricardo
  */
-public class LoginBean {
-    @SerializedName("@codigoAlumno")
-    private String codigoAlumno;
-    @SerializedName("@success")
-    private boolean success;
+public class ListadoPeriodoBean {
+    
+    @SerializedName("@periodos")
+    private List<PeriodoBean> periodos;
     
     @SerializedName("@mensajeError")
     private String mensajeError;
 
-    public String getCodigoAlumno() {
-        return codigoAlumno;
+    public List<PeriodoBean> getPeriodos() {
+        return periodos;
     }
 
-    public void setCodigoAlumno(String codigoAlumno) {
-        this.codigoAlumno = codigoAlumno;
-    }
-    
-    public boolean isSuccess() {
-        return success;
-    }
-
-    public void setSuccess(boolean success) {
-        this.success = success;
+    public void setPeriodos(List<PeriodoBean> periodos) {
+        this.periodos = periodos;
     }
 
     public String getMensajeError() {
@@ -47,8 +39,10 @@ public class LoginBean {
 
     @Override
     public String toString() {
-        return "LoginBean{" + "success=" + success + ", mensajeError=" + mensajeError + '}';
+        return "ListadoPeriodoBean{" + "periodos=" + periodos + ", mensajeError=" + mensajeError + '}';
     }
     
+    
+
     
 }
