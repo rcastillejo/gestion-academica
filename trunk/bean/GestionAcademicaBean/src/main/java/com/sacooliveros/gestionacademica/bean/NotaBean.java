@@ -21,6 +21,17 @@ public class NotaBean {
     @SerializedName("@mensajeError")
     private String mensajeError;
 
+    public NotaBean(String curso, String nota) {
+        this.curso = curso;
+        this.nota = nota;
+    }
+
+    public NotaBean() {
+    }
+
+    
+    
+    
     public String getAlumnoId() {
         return alumnoId;
     }
