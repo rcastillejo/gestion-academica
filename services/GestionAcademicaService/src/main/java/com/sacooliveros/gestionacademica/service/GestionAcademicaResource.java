@@ -19,9 +19,7 @@ import com.sacooliveros.gestionacademica.bean.SimulacroBean;
 import com.sacooliveros.gestionacademica.message.MessageError;
 import com.sacooliveros.gestionacademica.proxy.ColegioProxy;
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.PUT;
@@ -32,7 +30,6 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import pe.saco.webservices.Simulacro;
 import pe.saco.webservices.WebServiceAlumno;
 import pe.saco.webservices.WebServiceAlumno_Service;
 
@@ -209,22 +206,32 @@ public class GestionAcademicaResource {
     @Produces("application/json")
     public String getNotas(@PathParam("alumnoId") String alumnoId) {
         String response;
-        Map<String, PeriodoBean> periodoRepo;
+        List<PeriodoBean> periodosResponse;
         ListadoPeriodoBean listadoPeriodoResponse;
-        List<pe.saco.webservices.Nota> notas;
+        List<pe.saco.webservices.Periodo> periodos;
+        ;
         Gson gson = new Gson();
 
         listadoPeriodoResponse = new ListadoPeriodoBean();
         try {
             WebServiceAlumno port = alumnoService.getWebServiceAlumnoPort();
-            notas = port.consultarNotas(alumnoId);
+            periodos = port.consultarPeriodo(alumnoId);
 
-            periodoRepo = new LinkedHashMap();
-            for (pe.saco.webservices.Nota nota : notas) {
-                populatePeriodo(periodoRepo, nota);
+            periodosResponse = new ArrayList<PeriodoBean>();
+            for (pe.saco.webservices.Periodo periodo : periodos) {
+                PeriodoBean periodoResponse = new PeriodoBean(periodo.getCodigoPeriodo(), periodo.getNombrePeriodo());
+                List<NotaBean> notasResponse = new ArrayList<NotaBean>();
+                
+                List<pe.saco.webservices.Nota> notas = port.consultarNota(alumnoId, periodo.getCodigoPeriodo() + "");                
+                for (pe.saco.webservices.Nota nota : notas) {
+                    notasResponse.add(new NotaBean(nota.getNombreCurso(), nota.getNota()));
+                }
+                
+                periodoResponse.setNotas(notasResponse);
+                periodosResponse.add(periodoResponse);
             }
 
-            listadoPeriodoResponse.setPeriodos(new ArrayList<PeriodoBean>(periodoRepo.values()));
+            listadoPeriodoResponse.setPeriodos(periodosResponse);
         } catch (Exception e) {
             log.error(MessageError.GET_NOTAS + "[" + alumnoId + "]", e);
             listadoPeriodoResponse.setMensajeError(MessageError.GET_NOTAS + "[" + alumnoId + "]");
@@ -232,23 +239,6 @@ public class GestionAcademicaResource {
         response = gson.toJson(listadoPeriodoResponse);
         log.debug("Notas obtenido " + response);
         return response;
-    }
-
-    private void populatePeriodo(Map<String, PeriodoBean> periodoRepo, pe.saco.webservices.Nota nota) {
-        PeriodoBean periodo = periodoRepo.get(nota.getPeriodo());
-        if (periodo == null) {
-            periodo = new PeriodoBean();
-            periodo.setNotas(new ArrayList<NotaBean>());
-            periodoRepo.put(nota.getPeriodo(), periodo);
-        }
-        addNota(periodo, nota);
-    }
-
-    private void addNota(PeriodoBean periodo, pe.saco.webservices.Nota nota) {
-        NotaBean notaResponse = new NotaBean();
-        notaResponse.setCurso(nota.getNombreCurso());
-        notaResponse.setNota(nota.getNota());
-        periodo.getNotas().add(notaResponse);
     }
 
     /**
@@ -327,7 +317,8 @@ public class GestionAcademicaResource {
 
             detalleAsistenciaResponse = new ArrayList<DetalleAsistenciaBean>();
             for (pe.saco.webservices.Asistencia asistencia : detalleAsistencia) {
-                detalleAsistenciaResponse.add(new DetalleAsistenciaBean(asistencia.getDia(), mes, asistencia.getTipoAsistencia()));
+                log.trace("detalle asistencia [dia={}, mes={}, tipo={}]", new Object[]{asistencia.getDia(), asistencia.getMes(), asistencia.getTipoAsistencia()});
+                detalleAsistenciaResponse.add(new DetalleAsistenciaBean(asistencia.getDia(), asistencia.getMes() + "", asistencia.getTipoAsistencia()));
             }
 
             asistenciaResponse.setDetalleAsistencia(detalleAsistenciaResponse);
@@ -349,7 +340,7 @@ public class GestionAcademicaResource {
     @GET
     @Path("/pago/{alumnoId}")
     @Produces("application/json")
-    public String getAsistencia(@PathParam("alumnoId") String alumnoId) {
+    public String getPago(@PathParam("alumnoId") String alumnoId) {
 
         String response;
         Gson gson = new Gson();
