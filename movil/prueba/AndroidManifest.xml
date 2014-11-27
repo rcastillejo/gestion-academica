@@ -29,7 +29,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.example.prueba.MainActivity"
+            android:name="com.example.prueba.MenuActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />

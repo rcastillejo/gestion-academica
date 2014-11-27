@@ -5,7 +5,7 @@ import com.sacooliveros.intranet.http.HttpControl;
 
 public abstract class GestionAcademicaService {
 	
-	private static final String URL = "http://192.168.1.103:8080/GestionAcademicaService/webresources/GestionAcademica/"; 
+	private static final String URL = "http://192.168.1.103:8080/PC1Service/webresources/PC1/"; 
 	private final String serviceUrl;
 	
 	public GestionAcademicaService(String service){		

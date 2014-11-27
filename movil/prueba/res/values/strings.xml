@@ -42,4 +42,12 @@
     <string name="frmlogin_boton1">Ingresar</string>
     <string name="frmlogin_boton2">Salir</string>
     
+    <!-- Frm Notas -->
+    <string name="frmnota_lbltitulo">Datos del Alumno</string>
+    <string name="frmnota_lblnombres">Nombres :</string>
+    <string name="frmnota_lblapellidos">Apellidos :</string>
+    <string name="frmnota_lbltitulo2">Notas</string>
+    <string name="frmnota_lblperiodos">Periodos : </string>
+    <string name="frmnota_lbltitulo3">Calificaciones</string>
+    <string name="frmnota_lblperiodo">Periodo : </string>
 </resources>

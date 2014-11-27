@@ -18,7 +18,7 @@ import com.sacooliveros.intranet.util.HyundaiProgressDialog;
 import com.sacooliveros.intranet.util.LoadTaskDialog;
 import com.sacooliveros.intranet.util.Loadingable;
 
-public class ConsultarAlumnoActivity extends MenuActivity implements OnClickListener, Loadingable{
+public class ConsultarNotaActivity extends MenuActivity implements OnClickListener, Loadingable{
 	TextView txtAlumno, txtTipCentro, txtCentro, txtLocal, txtAula;
 	TextView txtTipGrado, txtGrado, txtSeccion, txtNivel, txtCorreo;
 	TextView txtTurno;
@@ -89,8 +89,8 @@ public class ConsultarAlumnoActivity extends MenuActivity implements OnClickList
     
     
     private void cargarDatos(){
-		new LoadTaskDialog(ConsultarAlumnoActivity.this, null,
-				new HyundaiProgressDialog(ConsultarAlumnoActivity.this)).execute();
+		new LoadTaskDialog(ConsultarNotaActivity.this, null,
+				new HyundaiProgressDialog(ConsultarNotaActivity.this)).execute();
     }
     
     public void onClick(View v){
@@ -99,7 +99,7 @@ public class ConsultarAlumnoActivity extends MenuActivity implements OnClickList
     	if(v.equals(btnRegresar)){
     		i = new Intent(this, MenuActivity.class);    		
     	}else{
-    		i = new Intent(this, ConsultarAlumnoActivity.class);    		
+    		i = new Intent(this, ConsultarNotaActivity.class);    		
     	}
     	startActivity(i);
     }
