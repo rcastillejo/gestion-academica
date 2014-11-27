@@ -26,7 +26,7 @@ public class LoginController  extends GestionAcademicaService{
 		if (responseBean ==null){
 			throw new RuntimeException("Error de conexion");		
 		}
-		createSession(usuario);
+		createSession(responseBean.getCodigoAlumno());
 		return responseBean;
 	}
 		

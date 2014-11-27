@@ -116,7 +116,7 @@ public class LoginActivity extends Activity  implements OnClickListener, Loading
 		Intent i;
 		
 		if (mensaje.length() == 0){
-			i = new Intent(this, MainActivity.class);    		
+			i = new Intent(this, MenuActivity.class);    		
     		startActivity(i);			
 		}else{
 			Toast.makeText(this, mensaje, Toast.LENGTH_LONG).show();

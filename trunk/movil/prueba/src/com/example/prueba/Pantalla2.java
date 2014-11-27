@@ -15,7 +15,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 //Se debe implementar la interfaz android.view.View.OnClickListener para el evento click
-public class Pantalla2 extends MainActivity implements OnClickListener, Loadingable{
+public class Pantalla2 extends MenuActivity implements OnClickListener, Loadingable{
 	String mensaje;
 	Button boton1, boton2;
 	EditText txtAlumnoId;
