@@ -5,8 +5,6 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     
-    <string name="main_boton1">Consultar Datos</string>    
-    <string name="main_boton2">Otros</string>
     
     <string name="pantalla2_etiqueta1">Medium Text</string>
     <string name="pantalla2_etiqueta2">Medium Text</string>
@@ -34,6 +32,12 @@
     
     <string name="pantalla3_boton1">Consultar</string>
     
+    <!-- Frm Menu -->
+    
+    <string name="main_boton1">Consultar Datos</string>    
+    <string name="main_boton2">Consultar Notas</string> 
+    <string name="main_boton3">Consultar Asistencia</string> 
+    <string name="main_boton0">Regresar</string>
     
     
     <!-- Frm Login -->

@@ -33,7 +33,7 @@
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <TextView
-                android:id="@+id/textView4"
+                android:id="@+id/frmNotas_txtNombres"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="XXXXXXXXXX"
@@ -50,7 +50,7 @@
             android:text="@string/frmnota_lblapellidos"
             android:textAppearance="?android:attr/textAppearanceMedium" />
             <TextView
-                android:id="@+id/textView5"
+                android:id="@+id/frmNotas_txtApellidos"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="XXXXXXXXXX"
@@ -75,65 +75,34 @@
             android:layout_height="wrap_content" >
 
             <TextView
-                android:id="@+id/textView9"
+                android:id="@+id/frmNotas_lblPeriodo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/frmnota_lblperiodo"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <TextView
-                android:id="@+id/textView10"
+                android:id="@+id/frmNotas_txtPeriodo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Primer_Bimestre"
+                android:text="-"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
         </LinearLayout>
 
     </LinearLayout>
 
-    <TableLayout
+    <ListView
+        android:id="@+id/frmNotas_lstNotas"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
+    </ListView>
 
-        <TableRow
-            android:id="@+id/tableRow1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
-
-            <TextView
-                android:id="@+id/textView11"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Algebra"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
-
-            <TextView
-                android:id="@+id/textView12"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="13"
-                android:textAppearance="?android:attr/textAppearanceSmall" />
-        
-        </TableRow>
-
-        <TableRow
-            android:id="@+id/tableRow2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
-        </TableRow>
-
-        <TableRow
-            android:id="@+id/tableRow3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
-        </TableRow>
-
-        <TableRow
-            android:id="@+id/tableRow4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
-        </TableRow>
-    </TableLayout>
+    <Button
+        android:id="@+id/frmNotas_btnRegresar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/pantalla1_boton1" />
 
 </LinearLayout>

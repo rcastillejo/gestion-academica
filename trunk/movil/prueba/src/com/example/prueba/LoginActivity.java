@@ -2,6 +2,7 @@ package com.example.prueba;
 
 
 import com.sacooliveros.gestionacademica.bean.LoginBean;
+import com.sacooliveros.intranet.controller.AlumnoController;
 import com.sacooliveros.intranet.controller.LoginController;
 import com.sacooliveros.intranet.util.HyundaiProgressDialog;
 import com.sacooliveros.intranet.util.LoadTaskDialog;
@@ -76,12 +77,10 @@ public class LoginActivity extends Activity  implements OnClickListener, Loading
     
 	@Override
 	public void onClick(View v) {
-		Intent i;
 		if(v.equals(btnIngresar)){
 			login();
 		}else if (v.equals(btnSalir)){
-			/*i = new Intent(this, Pantalla2.class);			
-			startActivity(i);*/
+			finish();
 		}
 	}
 
@@ -104,6 +103,8 @@ public class LoginActivity extends Activity  implements OnClickListener, Loading
 			bean = LoginController.getInstance().login(usuario, password);			
 			if(bean.getMensajeError() != null){
 				mensaje = bean.getMensajeError();
+			}else{
+				AlumnoController.getInstance().consultar(bean.getCodigoAlumno());
 			}
 		} catch (Exception e) {
 			mensaje = e.getMessage();

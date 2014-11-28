@@ -4,7 +4,7 @@ import java.io.IOException;
 
 import org.apache.http.client.ClientProtocolException;
  
-public class HttpControl {
+public class HTTPControl {
 	
 	public static String getJson(String url, String json) {
 		HttpPoster poster = new HttpPoster();

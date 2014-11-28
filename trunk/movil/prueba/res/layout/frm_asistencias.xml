@@ -34,7 +34,7 @@
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <TextView
-                android:id="@+id/textView4"
+                android:id="@+id/frmAsistencias_txtNombres"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="XXXXXXXXXX"
@@ -51,39 +51,29 @@
             android:layout_height="wrap_content"
             android:text="@string/frmnota_lblapellidos"
             android:textAppearance="?android:attr/textAppearanceMedium" />
+
             <TextView
-                android:id="@+id/textView5"
+                android:id="@+id/frmAsistencias_txtApellidos"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="XXXXXXXXXX"
                 android:textAppearance="?android:attr/textAppearanceSmall" />
+
         </LinearLayout>
 
     </LinearLayout>
-	<TextView
-            android:id="@+id/textView8"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/string_empty"
-            android:textAppearance="?android:attr/textAppearanceSmall" />
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/frmnota_lbltitulo2"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
 
-    <TextView
-        android:id="@+id/textView9"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/frmnota_lblperiodos"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
-    <ExpandableListView
-        android:id="@+id/expandableListView1"
+    
+    <ListView
+        android:id="@+id/frmAsistencias_lstAsistencias"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
-    </ExpandableListView>
+    </ListView>
 
+    <Button
+        android:id="@+id/frmAsistencias_btnRegresar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/pantalla1_boton1" />
 </LinearLayout>

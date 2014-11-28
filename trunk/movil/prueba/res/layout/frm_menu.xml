@@ -18,5 +18,19 @@
         android:text="@string/main_boton2"
         android:textAppearance="?android:attr/textAppearanceSmall"/>
     
+    <Button
+        android:id="@+id/main_boton3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/main_boton3"
+        android:textAppearance="?android:attr/textAppearanceSmall"/>
+    
+    <Button
+        android:id="@+id/main_boton0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/main_boton0"
+        android:textAppearance="?android:attr/textAppearanceSmall"/>
+    
     
 </LinearLayout>
