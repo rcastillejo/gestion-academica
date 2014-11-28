@@ -1,6 +1,9 @@
 package com.example.prueba;
 
 
+import com.sacooliveros.intranet.bean.UsuarioBean;
+import com.sacooliveros.intranet.controller.LoginController;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,7 +15,7 @@ import android.widget.Button;
 
 
 public class MenuActivity extends Activity  implements OnClickListener{
-	private Button btnConsultar, btnNotas,btnOtros;
+	private Button btnConsultar, btnNotas, btnRegresar, btnAsistencia;
 	
 	
     @Override
@@ -50,13 +53,18 @@ public class MenuActivity extends Activity  implements OnClickListener{
     private void obtenerElementos(){
         
         btnConsultar = (Button) findViewById(R.id.main_boton1);
-        btnOtros = (Button) findViewById(R.id.main_boton2);    	
+        btnNotas = (Button) findViewById(R.id.main_boton2);
+        btnAsistencia  = (Button) findViewById(R.id.main_boton3);
+        
+        btnRegresar = (Button) findViewById(R.id.main_boton0);    	
     }
 
     private void asignarEventos(){
     	btnConsultar.setOnClickListener(this);
-    	btnOtros.setOnClickListener(this);
     	btnNotas.setOnClickListener(this);
+    	btnAsistencia.setOnClickListener(this);
+
+    	btnRegresar.setOnClickListener(this);
     }
     
 	@Override
@@ -66,11 +74,17 @@ public class MenuActivity extends Activity  implements OnClickListener{
     		i = new Intent(this, ConsultarAlumnoActivity.class);    		
     		startActivity(i);
 		}else if(v.equals(btnNotas)){
-        		i = new Intent(this, ConsultarNotaActivity.class);    		
+        		i = new Intent(this, ListadoPeriodoActivity.class);    		
         		startActivity(i);
-		}else if (v.equals(btnOtros)){
-			i = new Intent(this, Pantalla2.class);			
-			startActivity(i);
+		}else if(v.equals(btnAsistencia)){
+    		i = new Intent(this, ListadoMesActivity.class);    		
+    		startActivity(i);
+		}else if (v.equals(btnRegresar)){
+			finish();
 		}
+	}
+
+	protected UsuarioBean getUsuario(){
+		return LoginController.getInstance().getSession();
 	}
 }

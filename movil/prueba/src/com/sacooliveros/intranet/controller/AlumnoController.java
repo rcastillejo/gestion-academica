@@ -6,6 +6,7 @@ public class AlumnoController  extends GestionAcademicaService{
 	
 	private static final String serviceName = "alumno";	
 	public static AlumnoController instance = null;
+	private AlumnoBean session;
 	
 	private AlumnoController() {
 		super(serviceName);
@@ -24,7 +25,15 @@ public class AlumnoController  extends GestionAcademicaService{
 		if (responseBean ==null){
 			throw new RuntimeException("Error de conexion");		
 		}
+		createSession(responseBean);
 		return responseBean;
 	}
-		
+
+	private void createSession(AlumnoBean bean){
+		session = bean;
+	}
+	
+	public AlumnoBean getSession(){
+		return session;
+	}
 }

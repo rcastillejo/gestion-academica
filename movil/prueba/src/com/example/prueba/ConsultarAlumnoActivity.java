@@ -5,14 +5,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.sacooliveros.gestionacademica.bean.AlumnoBean;
 import com.sacooliveros.intranet.bean.UsuarioBean;
 import com.sacooliveros.intranet.controller.AlumnoController;
-import com.sacooliveros.intranet.controller.GestionAcademicaService;
 import com.sacooliveros.intranet.controller.LoginController;
 import com.sacooliveros.intranet.util.HyundaiProgressDialog;
 import com.sacooliveros.intranet.util.LoadTaskDialog;
@@ -41,12 +39,6 @@ public class ConsultarAlumnoActivity extends MenuActivity implements OnClickList
         cargarDatos();
     }
 
-	private UsuarioBean getUsuario(){
-		/*UsuarioBean usuario = new UsuarioBean();
-		usuario.setUsername("151300763");
-		return usuario;*/
-		return LoginController.getInstance().getSession();
-	}
 	
 	private void rellenarElementos(){
 		txtAlumno.setText(bean.getNombres() + " " + bean.getApellidoPaterno() + " " +bean.getApellidoMaterno());
@@ -94,14 +86,9 @@ public class ConsultarAlumnoActivity extends MenuActivity implements OnClickList
     }
     
     public void onClick(View v){
-    	Intent i;
-    	
     	if(v.equals(btnRegresar)){
-    		i = new Intent(this, MenuActivity.class);    		
-    	}else{
-    		i = new Intent(this, ConsultarAlumnoActivity.class);    		
+    		finish();		
     	}
-    	startActivity(i);
     }
     
 	@Override
@@ -114,8 +101,16 @@ public class ConsultarAlumnoActivity extends MenuActivity implements OnClickList
 		String alumnoId;
 		mensaje = "";
 		try {
-			alumnoId = getUsuario().getUsername();
-			bean = AlumnoController.getInstance().consultar(alumnoId);
+			bean = AlumnoController.getInstance().getSession();
+			
+			if(bean == null){
+				alumnoId = getUsuario().getUsername();
+				bean = AlumnoController.getInstance().consultar(alumnoId);
+			}	
+			
+			if(bean.getMensajeError() != null){
+				mensaje = bean.getMensajeError();
+			}
 		} catch (Exception e) {
 			mensaje = e.getMessage();
 		}

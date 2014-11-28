@@ -1,11 +1,11 @@
 package com.sacooliveros.intranet.controller;
 
 import com.google.gson.Gson;
-import com.sacooliveros.intranet.http.HttpControl;
+import com.sacooliveros.intranet.http.HTTPControl;
 
 public abstract class GestionAcademicaService {
 	
-	private static final String URL = "http://192.168.1.103:8080/PC1Service/webresources/PC1/"; 
+	private static final String URL = "http://192.168.1.103:8080/GestionAcademicaService/webresources/GestionAcademica/"; 
 	private final String serviceUrl;
 	
 	public GestionAcademicaService(String service){		
@@ -19,7 +19,7 @@ public abstract class GestionAcademicaService {
 	public <T> T get(String params, Class<T> classOfT){
 		Gson gs = new Gson();
 
-		String response = HttpControl.getJson(this.serviceUrl + params);
+		String response = HTTPControl.getJson(this.serviceUrl + params);
 		T responseBean = gs.fromJson(response, classOfT);
 		return responseBean;
 		
@@ -29,7 +29,7 @@ public abstract class GestionAcademicaService {
 	public <T> T post(String json, Class<T> classOfT){
 		Gson gs = new Gson();
 
-		String response = HttpControl.getJson(this.serviceUrl, json);
+		String response = HTTPControl.getJson(this.serviceUrl, json);
 		T responseBean = gs.fromJson(response, classOfT);
 		return responseBean;		
 	}
