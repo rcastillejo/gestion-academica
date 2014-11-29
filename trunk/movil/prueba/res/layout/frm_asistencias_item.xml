@@ -7,13 +7,25 @@
     android:weightSum="1" >
 
 	    <TextView
-	        android:id="@+id/frmAsistenciaItem_txtDia"
+	        android:id="@+id/frmAsistenciaItem_txtNroDia"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="-"/>
+	    
+	    <TextView
+	        android:id="@+id/frmAsistenciaItem_space1"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text=" - "/>
+	    
+	    <TextView
+	        android:id="@+id/frmAsistenciaItem_txtNomDia"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:text="-"/>
 
 	    <TextView
-	        android:id="@+id/frmAsistenciaItem_space"
+	        android:id="@+id/frmAsistenciaItem_space2"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:text=" - "/>
