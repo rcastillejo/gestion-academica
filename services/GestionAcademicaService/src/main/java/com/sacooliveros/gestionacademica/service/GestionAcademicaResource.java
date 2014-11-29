@@ -209,7 +209,7 @@ public class GestionAcademicaResource {
         List<PeriodoBean> periodosResponse;
         ListadoPeriodoBean listadoPeriodoResponse;
         List<pe.saco.webservices.Periodo> periodos;
-        ;
+        
         Gson gson = new Gson();
 
         listadoPeriodoResponse = new ListadoPeriodoBean();
@@ -317,8 +317,8 @@ public class GestionAcademicaResource {
 
             detalleAsistenciaResponse = new ArrayList<DetalleAsistenciaBean>();
             for (pe.saco.webservices.Asistencia asistencia : detalleAsistencia) {
-                log.trace("detalle asistencia [dia={}, mes={}, tipo={}]", new Object[]{asistencia.getDia(), asistencia.getMes(), asistencia.getTipoAsistencia()});
-                detalleAsistenciaResponse.add(new DetalleAsistenciaBean(asistencia.getDia(), asistencia.getMes() + "", asistencia.getTipoAsistencia()));
+                log.trace("detalle asistencia [dia={}, mes={}, tipo={}]", new Object[]{asistencia.getDia(), mes, asistencia.getTipoAsistencia()});
+                detalleAsistenciaResponse.add(new DetalleAsistenciaBean(asistencia.getDia(), mes, asistencia.getTipoAsistencia()));
             }
 
             asistenciaResponse.setDetalleAsistencia(detalleAsistenciaResponse);
