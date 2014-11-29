@@ -12,6 +12,7 @@ package com.sacooliveros.gestionacademica.message;
  */
 public interface MessageError {
     
+    String LOGIN_ERROR = "Error usuario y/o clave";
     String GET_ALUMNO = "Error al obtener alumno:";
     String LOGIN = "Error al realizar login:";
     String GET_PERIODOS = "Error al obtener periodos del alumno:";

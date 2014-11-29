@@ -82,8 +82,12 @@ public class GestionAcademicaResource {
             WebServiceAlumno port = alumnoService.getWebServiceAlumnoPort();
             codigoUsuario = port.validarAlumno(username, password);
             login.setCodigoAlumno(codigoUsuario + "");
-            
+
             login.setSuccess(codigoUsuario != 0);
+            
+            if(!login.isSuccess()){
+                login.setMensajeError(MessageError.LOGIN_ERROR);
+            }
             log.debug("login obtenido " + codigoUsuario);
         } catch (Exception e) {
             log.error(MessageError.LOGIN + "[" + username + "]", e);
@@ -209,7 +213,7 @@ public class GestionAcademicaResource {
         List<PeriodoBean> periodosResponse;
         ListadoPeriodoBean listadoPeriodoResponse;
         List<pe.saco.webservices.Periodo> periodos;
-        
+
         Gson gson = new Gson();
 
         listadoPeriodoResponse = new ListadoPeriodoBean();
@@ -221,12 +225,12 @@ public class GestionAcademicaResource {
             for (pe.saco.webservices.Periodo periodo : periodos) {
                 PeriodoBean periodoResponse = new PeriodoBean(periodo.getCodigoPeriodo(), periodo.getNombrePeriodo());
                 List<NotaBean> notasResponse = new ArrayList<NotaBean>();
-                
-                List<pe.saco.webservices.Nota> notas = port.consultarNota(alumnoId, periodo.getCodigoPeriodo() + "");                
+
+                List<pe.saco.webservices.Nota> notas = port.consultarNota(alumnoId, periodo.getCodigoPeriodo() + "");
                 for (pe.saco.webservices.Nota nota : notas) {
                     notasResponse.add(new NotaBean(nota.getNombreCurso(), nota.getNota()));
                 }
-                
+
                 periodoResponse.setNotas(notasResponse);
                 periodosResponse.add(periodoResponse);
             }
@@ -267,9 +271,32 @@ public class GestionAcademicaResource {
             simulacrosResponse = new ArrayList<SimulacroBean>();
             for (pe.saco.webservices.Simulacro simulacro : simulacros) {
                 resultadoSimulacro = port.consultarResultadoSimulacro(alumnoId, simulacro.getCodigoSimulacro() + "");
-                simulacrosResponse.add(new SimulacroBean(alumnoId, simulacro.getNombreSimulacro(), resultadoSimulacro));
+                simulacrosResponse.add(new SimulacroBean(alumnoId, simulacro.getCodigoSimulacro() + "", 
+                        simulacro.getNombreSimulacro(), resultadoSimulacro));
             }
 
+            listadoSimulacroResponse.setSimulacros(simulacrosResponse);
+        } catch (Exception e) {
+            log.error(MessageError.GET_SIMULACRO + "[" + alumnoId + "]", e);
+            listadoSimulacroResponse.setMensajeError(MessageError.GET_SIMULACRO + "[" + alumnoId + "]");
+        }
+        response = gson.toJson(listadoSimulacroResponse);
+        log.debug("Simulacro obtenido " + response);
+        return response;
+    }
+
+    public String getSimulacroMock(String alumnoId) {
+        String response;
+        ListadoSimulacroBean listadoSimulacroResponse = new ListadoSimulacroBean();
+        List<SimulacroBean> simulacrosResponse;
+        Gson gson = new Gson();
+        try {
+            simulacrosResponse = new ArrayList<SimulacroBean>();
+            simulacrosResponse.add(new SimulacroBean(alumnoId, "1", "Simulacro A", 15D));
+            simulacrosResponse.add(new SimulacroBean(alumnoId, "2", "Simulacro B", 14D));
+            simulacrosResponse.add(new SimulacroBean(alumnoId, "3", "Simulacro C", 15D));
+            simulacrosResponse.add(new SimulacroBean(alumnoId, "4", "Simulacro D", 18D));
+            simulacrosResponse.add(new SimulacroBean(alumnoId, "5", "Simulacro E", 19D));
             listadoSimulacroResponse.setSimulacros(simulacrosResponse);
         } catch (Exception e) {
             log.error(MessageError.GET_SIMULACRO + "[" + alumnoId + "]", e);
