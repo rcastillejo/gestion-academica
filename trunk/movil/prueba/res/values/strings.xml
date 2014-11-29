@@ -37,6 +37,7 @@
     <string name="main_boton1">Consultar Datos</string>    
     <string name="main_boton2">Consultar Notas</string> 
     <string name="main_boton3">Consultar Asistencia</string> 
+    <string name="main_boton4">Consultar Simulacro</string> 
     <string name="main_boton0">Regresar</string>
     
     
@@ -54,4 +55,11 @@
     <string name="frmnota_lblperiodos">Periodos : </string>
     <string name="frmnota_lbltitulo3">Calificaciones</string>
     <string name="frmnota_lblperiodo">Periodo : </string>
+     <!-- Frm Simulacros -->
+    <string name="frmsimulacro_lbltitulo1">Simulacros</string>
+    <string name="frmsimulacro_lbltitulo2">Listado de Simulacros</string>
+    <string name="frmsimulacro_lblsimulacro">Simulacro :</string>
+    <string name="frmSimulacroItem_puntaje">Puntaje:</string>
+    <string name="frmSimulacroItem_simulacro">Simulacro:</string>
+    
 </resources>

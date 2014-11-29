@@ -1,6 +1,5 @@
 package com.example.prueba;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -11,7 +10,6 @@ import android.widget.Toast;
 import com.sacooliveros.gestionacademica.bean.AlumnoBean;
 import com.sacooliveros.intranet.bean.UsuarioBean;
 import com.sacooliveros.intranet.controller.AlumnoController;
-import com.sacooliveros.intranet.controller.LoginController;
 import com.sacooliveros.intranet.util.HyundaiProgressDialog;
 import com.sacooliveros.intranet.util.LoadTaskDialog;
 import com.sacooliveros.intranet.util.Loadingable;

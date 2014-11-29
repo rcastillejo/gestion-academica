@@ -15,7 +15,7 @@ import android.widget.Button;
 
 
 public class MenuActivity extends Activity  implements OnClickListener{
-	private Button btnConsultar, btnNotas, btnRegresar, btnAsistencia;
+	private Button btnConsultar, btnNotas, btnRegresar, btnAsistencia, btnSimulacro;
 	
 	
     @Override
@@ -55,6 +55,7 @@ public class MenuActivity extends Activity  implements OnClickListener{
         btnConsultar = (Button) findViewById(R.id.main_boton1);
         btnNotas = (Button) findViewById(R.id.main_boton2);
         btnAsistencia  = (Button) findViewById(R.id.main_boton3);
+        btnSimulacro  = (Button) findViewById(R.id.main_boton4);
         
         btnRegresar = (Button) findViewById(R.id.main_boton0);    	
     }
@@ -63,6 +64,7 @@ public class MenuActivity extends Activity  implements OnClickListener{
     	btnConsultar.setOnClickListener(this);
     	btnNotas.setOnClickListener(this);
     	btnAsistencia.setOnClickListener(this);
+    	btnSimulacro.setOnClickListener(this);
 
     	btnRegresar.setOnClickListener(this);
     }
@@ -78,6 +80,9 @@ public class MenuActivity extends Activity  implements OnClickListener{
         		startActivity(i);
 		}else if(v.equals(btnAsistencia)){
     		i = new Intent(this, ListadoMesActivity.class);    		
+    		startActivity(i);
+		}else if(v.equals(btnSimulacro)){
+    		i = new Intent(this, ListadoSimulacroActivity.class);    		
     		startActivity(i);
 		}else if (v.equals(btnRegresar)){
 			finish();
