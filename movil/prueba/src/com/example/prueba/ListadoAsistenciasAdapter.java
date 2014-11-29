@@ -2,7 +2,6 @@ package com.example.prueba;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -21,6 +20,7 @@ import android.widget.TextView;
 
 public class ListadoAsistenciasAdapter extends ArrayAdapter<DetalleAsistenciaBean> implements Filterable{
 
+	private static final int MONTH_OFFSET = 1;
 	private List<DetalleAsistenciaBean> items;
 	int resource;
 	Context context;
@@ -47,16 +47,26 @@ public class ListadoAsistenciasAdapter extends ArrayAdapter<DetalleAsistenciaBea
 			nuevaVista = (LinearLayout) convertView;
 		}
 
-		TextView txtDia = (TextView) nuevaVista.findViewById(R.id.frmAsistenciaItem_txtDia);
+		TextView txtNroDia = (TextView) nuevaVista.findViewById(R.id.frmAsistenciaItem_txtNroDia);
+		TextView txtNomDia = (TextView) nuevaVista.findViewById(R.id.frmAsistenciaItem_txtNomDia);
 		TextView txtEstado = (TextView) nuevaVista.findViewById(R.id.frmAsistenciaItem_txtEstado);
-		/*Date d = Calendar.getInstance(new Locale("es", "PE")).getTime();
-		Calendar.getInstance().set(Calendar.MONTH, );*/
+
+		int mes = Integer.parseInt(item.getMes());
+		int dia = Integer.parseInt(item.getDia());
 		
-		txtDia.setText(item.getDia());
+		
+		Calendar c = Calendar.getInstance();
+		c.set(Calendar.MONTH, mes + MONTH_OFFSET); 
+		c.set(Calendar.DAY_OF_MONTH, dia);
+
+		txtNroDia.setText(item.getDia());
+		txtNomDia.setText(c.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.LONG, Locale.getDefault()));
 		txtEstado.setText(item.getEstado());
 
 		return nuevaVista;
 	}
+	
+	
 	
 	@Override
 	public int getCount() {

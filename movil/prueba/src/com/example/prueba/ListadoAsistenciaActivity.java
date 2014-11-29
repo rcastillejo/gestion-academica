@@ -22,11 +22,12 @@ import com.sacooliveros.intranet.util.Loadingable;
 
 public class ListadoAsistenciaActivity extends MenuActivity implements OnClickListener, Loadingable{
 
-	TextView txtNombres, txtApellidos;
+	TextView txtNombres, txtApellidos, lblMes, txtMes;
 	Button btnRegresar;
 	ListView lstAsistencias;
 	ListadoAsistenciasAdapter adapter;
 	List<DetalleAsistenciaBean> data;
+	MesBean mes;
 	String mensaje;
 	
     @Override
@@ -48,6 +49,10 @@ public class ListadoAsistenciaActivity extends MenuActivity implements OnClickLi
 		txtNombres.setText(session.getNombres());
 		txtApellidos.setText(session.getApellidoPaterno() + " " + session.getApellidoMaterno());
 
+		lblMes.setVisibility(TextView.VISIBLE);
+		txtMes.setVisibility(TextView.VISIBLE);
+		txtMes.setText(mes.getNombre());
+		
 		// Configuracion de atributos <Cabecera, boton>
 		
 		adapter = new ListadoAsistenciasAdapter(this,
@@ -76,6 +81,10 @@ public class ListadoAsistenciaActivity extends MenuActivity implements OnClickLi
     	lstAsistencias = (ListView) findViewById(R.id.frmAsistencias_lstAsistencias);
 		txtNombres = (TextView) findViewById(R.id.frmAsistencias_txtNombres);
 		txtApellidos = (TextView) findViewById(R.id.frmAsistencias_txtApellidos);
+
+
+		lblMes = (TextView) findViewById(R.id.frmAsistencias_lblMes);
+		txtMes = (TextView) findViewById(R.id.frmAsistencias_txtMes);
 		
 
     }
@@ -107,7 +116,6 @@ public class ListadoAsistenciaActivity extends MenuActivity implements OnClickLi
 	@Override
 	public void loadingData() {
 		String alumnoId;
-		MesBean mes;
 		AsistenciaBean bean;
 		mensaje = "";
 		try {
