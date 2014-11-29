@@ -13,23 +13,41 @@ import com.google.gson.annotations.SerializedName;
 public class SimulacroBean {
     @SerializedName("@alumnoId")
     private String alumnoId;    
-    @SerializedName("@periodo")
-    private String periodo;
-    @SerializedName("@curso")
-    private String curso;
+    @SerializedName("@simulacroId")
+    private String simulacroId;
+    @SerializedName("@nombre")
+    private String nombre;
     @SerializedName("@nota")
     private double nota;
     
     @SerializedName("@mensajeError")
     private String mensajeError;
 
-    public SimulacroBean(String alumnoId, String curso, double nota) {
+    public SimulacroBean(String alumnoId, String simulacroId, String nombre, double nota) {
         this.alumnoId = alumnoId;
-        this.curso = curso;
+        this.simulacroId = simulacroId;
+        this.nombre = nombre;
         this.nota = nota;
     }
 
     public SimulacroBean() {
+    }
+
+    public String getSimulacroId() {
+        return simulacroId;
+    }
+
+    public void setSimulacroId(String simulacroId) {
+        this.simulacroId = simulacroId;
+    }
+
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     
@@ -40,22 +58,6 @@ public class SimulacroBean {
 
     public void setAlumnoId(String alumnoId) {
         this.alumnoId = alumnoId;
-    }
-
-    public String getPeriodo() {
-        return periodo;
-    }
-
-    public void setPeriodo(String periodo) {
-        this.periodo = periodo;
-    }
-
-    public String getCurso() {
-        return curso;
-    }
-
-    public void setCurso(String curso) {
-        this.curso = curso;
     }
 
     public double getNota() {
@@ -76,7 +78,8 @@ public class SimulacroBean {
 
     @Override
     public String toString() {
-        return "SimulacroBean{" + "alumnoId=" + alumnoId + ", periodo=" + periodo + ", curso=" + curso + ", nota=" + nota + ", mensajeError=" + mensajeError + '}';
+        return "SimulacroBean{" + "alumnoId=" + alumnoId + ", simulacroId=" + simulacroId + ", nombre=" + nombre + ", nota=" + nota + ", mensajeError=" + mensajeError + '}';
     }
+
 
 }
