@@ -240,6 +240,7 @@
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/pantalla1_dato12"
         android:layout_marginTop="16dp"
-        android:text="@string/pantalla1_boton1" />
+        android:text="@string/pantalla1_boton1" 
+        android:visibility="invisible"/>
 
 </RelativeLayout>
