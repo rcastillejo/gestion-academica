@@ -31,9 +31,10 @@
         android:id="@+id/frmlogin_textbox2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10" 
-        android:inputType="textPersonName"
+        android:ems="10"
+        android:inputType="textPassword"
         android:textAppearance="?android:attr/textAppearanceLarge" >
+
     </EditText>
 
     <LinearLayout
@@ -53,8 +54,8 @@
 	        android:id="@+id/frmlogin_boton2"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
-	        android:text="@string/frmlogin_boton2">
-	    </Button>        
+	        android:text="@string/frmlogin_boton2"
+        	android:visibility="invisible"/>
         
     </LinearLayout>
     

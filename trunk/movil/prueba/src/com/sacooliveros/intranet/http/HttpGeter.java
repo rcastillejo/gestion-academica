@@ -13,6 +13,8 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.params.BasicHttpParams;
 import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.params.HttpParams;
+import org.apache.http.protocol.HTTP;
+import org.apache.http.util.EntityUtils;
 
 import android.util.Log;
 
@@ -98,7 +100,8 @@ public class HttpGeter {
 		Log.d("STATUS", String.valueOf(this.status));
 
 		if (HttpStatus.SC_OK == this.status) {
-			String rp = stream2String(response.getEntity().getContent());
+			//String rp = stream2String(response.getEntity().getContent());
+			String rp = EntityUtils.toString(response.getEntity(), HTTP.ISO_8859_1);			
 			Log.d("Encrypted response", rp);
 			this.response = rp.toString();
 		}
