@@ -116,10 +116,10 @@ public class GestionAcademicaResourceTest {
     /**
      * Test of login method, of class GestionAcademicaResource.
      */
-    //@Test
+    @Test
     public void testGetSimulacro() {
         System.out.println("testGetSimulacro");
-        String alumnoId = "8245";
+        String alumnoId = "12468";
         GestionAcademicaResource instance = new GestionAcademicaResource();
         int simulacros = 1;
         String result = instance.getSimulacro(alumnoId);
