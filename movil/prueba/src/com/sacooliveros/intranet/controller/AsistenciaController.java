@@ -2,8 +2,6 @@ package com.sacooliveros.intranet.controller;
 
 import com.sacooliveros.gestionacademica.bean.AsistenciaBean;
 import com.sacooliveros.gestionacademica.bean.DetalleAsistenciaBean;
-import com.sacooliveros.gestionacademica.bean.ListadoPeriodoBean;
-import com.sacooliveros.gestionacademica.bean.PeriodoBean;
 
 
 public class AsistenciaController  extends GestionAcademicaService{

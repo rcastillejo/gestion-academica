@@ -3,36 +3,40 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:gravity="center"
-    android:orientation="horizontal"
+    android:orientation="vertical"
     android:weightSum="1" >
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 	    <TextView
-	        android:id="@+id/frmAsistenciaItem_txtNroDia"
+	        android:id="@+id/frmSimulacroItem_lblSimulacro"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/frmSimulacroItem_simulacro"/>
+	    
+	    <TextView
+	        android:id="@+id/frmSimulacroItem_txtSimulacro"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:text="@string/string_empty"/>
-	    
+    </LinearLayout>
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 	    <TextView
-	        android:id="@+id/frmAsistenciaItem_space1"
+	        android:id="@+id/frmSimulacroItem_lblPuntaje"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
-	        android:text=" - "/>
+	        android:text="@string/frmSimulacroItem_puntaje"/>
 	    
 	    <TextView
-	        android:id="@+id/frmAsistenciaItem_txtNomDia"
+	        android:id="@+id/frmSimulacroItem_txtPuntaje"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:text="@string/string_empty"/>
-
-	    <TextView
-	        android:id="@+id/frmAsistenciaItem_space2"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:text=" - "/>
-	    
-	    <TextView
-	        android:id="@+id/frmAsistenciaItem_txtEstado"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:text="@string/string_empty"/>
+    </LinearLayout>
 </LinearLayout>

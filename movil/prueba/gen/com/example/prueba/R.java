@@ -27,7 +27,7 @@ public final class R {
         public static final int loading_background=0x7f020002;
     }
     public static final class id {
-        public static final int action_settings=0x7f08004b;
+        public static final int action_settings=0x7f080054;
         public static final int frmAsistenciaItem_space1=0x7f08000b;
         public static final int frmAsistenciaItem_space2=0x7f08000d;
         public static final int frmAsistenciaItem_txtEstado=0x7f08000e;
@@ -42,37 +42,46 @@ public final class R {
         public static final int frmMesItem_lblTotalAsi=0x7f080026;
         public static final int frmMesItem_txtDia=0x7f080028;
         public static final int frmMesItem_txtEstado=0x7f080029;
-        public static final int frmMesItem_txtMes=0x7f080038;
+        public static final int frmMesItem_txtMes=0x7f080039;
         public static final int frmMesItem_txtTotalAsi=0x7f080027;
-        public static final int frmMeses_btnRegresar=0x7f080037;
-        public static final int frmMeses_lstMeses=0x7f080036;
-        public static final int frmMeses_txtApellidos=0x7f080035;
-        public static final int frmMeses_txtNombres=0x7f080034;
-        public static final int frmNotaItem_space=0x7f080042;
-        public static final int frmNotaItem_txtCurso=0x7f080041;
-        public static final int frmNotaItem_txtNota=0x7f080043;
-        public static final int frmNotas_btnRegresar=0x7f080040;
-        public static final int frmNotas_lblPeriodo=0x7f08003d;
-        public static final int frmNotas_lstNotas=0x7f08003f;
-        public static final int frmNotas_txtApellidos=0x7f08003a;
-        public static final int frmNotas_txtNombres=0x7f080039;
-        public static final int frmNotas_txtPeriodo=0x7f08003e;
-        public static final int frmPeriodoItem_txtPeriodo=0x7f080049;
-        public static final int frmPeriodos_btnRegresar=0x7f080048;
-        public static final int frmPeriodos_lstPeriodos=0x7f080047;
-        public static final int frmPeriodos_txtApellidos=0x7f080045;
-        public static final int frmPeriodos_txtNombres=0x7f080044;
+        public static final int frmMeses_btnRegresar=0x7f080038;
+        public static final int frmMeses_lstMeses=0x7f080037;
+        public static final int frmMeses_txtApellidos=0x7f080036;
+        public static final int frmMeses_txtNombres=0x7f080035;
+        public static final int frmNotaItem_space=0x7f080043;
+        public static final int frmNotaItem_txtCurso=0x7f080042;
+        public static final int frmNotaItem_txtNota=0x7f080044;
+        public static final int frmNotas_btnRegresar=0x7f080041;
+        public static final int frmNotas_lblPeriodo=0x7f08003e;
+        public static final int frmNotas_lstNotas=0x7f080040;
+        public static final int frmNotas_txtApellidos=0x7f08003b;
+        public static final int frmNotas_txtNombres=0x7f08003a;
+        public static final int frmNotas_txtPeriodo=0x7f08003f;
+        public static final int frmPeriodoItem_txtPeriodo=0x7f08004a;
+        public static final int frmPeriodos_btnRegresar=0x7f080049;
+        public static final int frmPeriodos_lstPeriodos=0x7f080048;
+        public static final int frmPeriodos_txtApellidos=0x7f080046;
+        public static final int frmPeriodos_txtNombres=0x7f080045;
+        public static final int frmSimulacroItem_lblPuntaje=0x7f080051;
+        public static final int frmSimulacroItem_lblSimulacro=0x7f08004f;
+        public static final int frmSimulacroItem_txtPuntaje=0x7f080052;
+        public static final int frmSimulacroItem_txtSimulacro=0x7f080050;
+        public static final int frmSimulacros_btnRegresar=0x7f08004e;
+        public static final int frmSimulacros_lstSimulacros=0x7f08004d;
+        public static final int frmSimulacros_txtApellidos=0x7f08004c;
+        public static final int frmSimulacros_txtNombres=0x7f08004b;
         public static final int frmlogin_boton1=0x7f08002e;
         public static final int frmlogin_boton2=0x7f08002f;
         public static final int frmlogin_etiqueta1=0x7f08002a;
         public static final int frmlogin_etiqueta2=0x7f08002c;
         public static final int frmlogin_textbox1=0x7f08002b;
         public static final int frmlogin_textbox2=0x7f08002d;
-        public static final int imgProgressImage=0x7f08004a;
-        public static final int main_boton0=0x7f080033;
+        public static final int imgProgressImage=0x7f080053;
+        public static final int main_boton0=0x7f080034;
         public static final int main_boton1=0x7f080030;
         public static final int main_boton2=0x7f080031;
         public static final int main_boton3=0x7f080032;
+        public static final int main_boton4=0x7f080033;
         public static final int pantalla1_boton1=0x7f080025;
         public static final int pantalla1_dato1=0x7f080010;
         public static final int pantalla1_dato10=0x7f08001f;
@@ -99,10 +108,10 @@ public final class R {
         public static final int textView1=0x7f080000;
         public static final int textView2=0x7f080002;
         public static final int textView3=0x7f080004;
-        public static final int textView6=0x7f08003b;
+        public static final int textView6=0x7f08003c;
         public static final int textView7=0x7f080001;
-        public static final int textView8=0x7f08003c;
-        public static final int textView9=0x7f080046;
+        public static final int textView8=0x7f08003d;
+        public static final int textView9=0x7f080047;
     }
     public static final class layout {
         public static final int frm_asistencias=0x7f030000;
@@ -117,8 +126,10 @@ public final class R {
         public static final int frm_notas_item=0x7f030009;
         public static final int frm_periodos=0x7f03000a;
         public static final int frm_periodos_item=0x7f03000b;
-        public static final int loading_progress_dialog=0x7f03000c;
-        public static final int pantalla1=0x7f03000d;
+        public static final int frm_simulacros=0x7f03000c;
+        public static final int frm_simulacros_item=0x7f03000d;
+        public static final int loading_progress_dialog=0x7f03000e;
+        public static final int pantalla1=0x7f03000f;
     }
     public static final class menu {
         public static final int main=0x7f070000;
@@ -126,28 +137,36 @@ public final class R {
     public static final class string {
         public static final int action_settings=0x7f050002;
         public static final int app_name=0x7f050000;
-        public static final int frmlogin_boton1=0x7f05001b;
-        public static final int frmlogin_boton2=0x7f05001c;
+        public static final int frmSimulacroItem_puntaje=0x7f050028;
+        public static final int frmSimulacroItem_simulacro=0x7f050029;
+        public static final int frmlogin_boton1=0x7f05001c;
+        public static final int frmlogin_boton2=0x7f05001d;
         /**  Frm Login 
          */
-        public static final int frmlogin_etiqueta1=0x7f050019;
-        public static final int frmlogin_etiqueta2=0x7f05001a;
-        public static final int frmnota_lblapellidos=0x7f05001f;
-        public static final int frmnota_lblnombres=0x7f05001e;
-        public static final int frmnota_lblperiodo=0x7f050023;
-        public static final int frmnota_lblperiodos=0x7f050021;
+        public static final int frmlogin_etiqueta1=0x7f05001a;
+        public static final int frmlogin_etiqueta2=0x7f05001b;
+        public static final int frmnota_lblapellidos=0x7f050020;
+        public static final int frmnota_lblnombres=0x7f05001f;
+        public static final int frmnota_lblperiodo=0x7f050024;
+        public static final int frmnota_lblperiodos=0x7f050022;
         /**  Frm Notas 
          */
-        public static final int frmnota_lbltitulo=0x7f05001d;
-        public static final int frmnota_lbltitulo2=0x7f050020;
-        public static final int frmnota_lbltitulo3=0x7f050022;
+        public static final int frmnota_lbltitulo=0x7f05001e;
+        public static final int frmnota_lbltitulo2=0x7f050021;
+        public static final int frmnota_lbltitulo3=0x7f050023;
+        public static final int frmsimulacro_lblsimulacro=0x7f050027;
+        /**  Frm Simulacros 
+         */
+        public static final int frmsimulacro_lbltitulo1=0x7f050025;
+        public static final int frmsimulacro_lbltitulo2=0x7f050026;
         public static final int hello_world=0x7f050001;
-        public static final int main_boton0=0x7f050018;
+        public static final int main_boton0=0x7f050019;
         /**  Frm Menu 
          */
         public static final int main_boton1=0x7f050015;
         public static final int main_boton2=0x7f050016;
         public static final int main_boton3=0x7f050017;
+        public static final int main_boton4=0x7f050018;
         public static final int pantalla1_boton1=0x7f050013;
         public static final int pantalla1_lblAula=0x7f05000e;
         public static final int pantalla1_lblCentro=0x7f05000a;
